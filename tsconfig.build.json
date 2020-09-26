@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "build", // 编译出来的文件放在什么地方
+    "outDir": "dist", // 编译出来的文件放在什么地方
     "module": "esnext", // 输出哪种模块格式
     "target": "ES5", // 编译后符合什么版本的ECMAScript标准
     "declaration": true, // 是否要为每一个.ts文件生成一个.d.ts文件, 以让用户获得提示和类型检查
