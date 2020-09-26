@@ -1,6 +1,6 @@
 {
   "name": "hanstyle",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "React Components Library",
   "author": "Zhang Han",
   "private": false,
@@ -50,6 +50,11 @@
     "build-storybook": "build-storybook -s public",
     "prepublish": "npm run test:nowatch && npm run lint && npm run build"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test:nowatch && npm run lint"
+    }
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -86,6 +91,7 @@
     "@types/storybook__addon-info": "^5.2.1",
     "babel-loader": "^8.1.0",
     "cross-env": "^7.0.2",
+    "husky": "^4.3.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-docgen-typescript-loader": "^3.7.2",
