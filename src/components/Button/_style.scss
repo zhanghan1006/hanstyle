@@ -9,62 +9,136 @@
   vertical-align: middle;
   background-image: none;
   border: $btn-border-width solid transparent;
-  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $border-radius);
   box-shadow: $btn-box-shadow;
   cursor: pointer;
   transition: $btn-transition;
+  outline:none;
   &.disabled,
   &[disabled] {
     cursor: not-allowed;
     opacity: $btn-disabled-opacity;
     box-shadow: none;
-    > * {
+    * {
       pointer-events: none;
     }
   }
 }
 
-.btn-lg {
-  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
-}
-
-.btn-sm {
-  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
-}
-
-.btn-primary {
-  @include button-style($primary, $primary, $white);
-}
-
-.btn-danger {
-  @include button-style($danger, $danger, $white);
-}
-
-.btn-default {
-  @include button-style($white, $gray-400, $body-color, $white, $primary, $primary);
-}
-
-.btn-link {
-  font-weight: $font-weight-normal;
-  color: $btn-link-color;
-  text-decoration: $link-decoration;
-  box-shadow: none;
-  &:hover {
-    color: $btn-link-hover-color;
-    text-decoration: $link-hover-decoration;
+// size & shape
+.btn-rectangular {
+  &.btn-small {
+    @include button-size-shape($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, 0);
   }
-  &:focus,
-  &.focus {
-    text-decoration: $link-hover-decoration;
-    box-shadow: none;
+  &.btn-middle {
+    @include button-size-shape($btn-padding-y, $btn-padding-x, $btn-font-size, 0);
   }
-  &.disabled,
-  &[disabled] {
-    cursor: not-allowed;
-    color: $btn-link-disabled-color;
-    pointer-events: none;
+  &.btn-large {
+    @include button-size-shape($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, 0);
   }
 }
+.btn-rounded {
+  &.btn-small {
+    @include button-size-shape($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
+  }
+  &.btn-middle {
+    @include button-size-shape($btn-padding-y, $btn-padding-x, $btn-font-size, $border-radius);
+  }
+  &.btn-large {
+    @include button-size-shape($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
+  }
+}
+.btn-elliptic {
+  &.btn-small {
+    @include button-size-shape($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, ($btn-padding-y-sm * 2 + $line-height-sm) / 2);
+  }
+  &.btn-middle {
+    @include button-size-shape($btn-padding-y, $btn-padding-x, $btn-font-size, ($btn-padding-y * 2 + $line-height-base) / 2);
+  }
+  &.btn-large {
+    @include button-size-shape($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, ($btn-padding-y-lg * 2 + $line-height-lg) / 2);
+  }
+}
+
+// btnType & themeColor
+.btn-solid {
+  &.btn-orange {
+    @include button-color($orange, $orange, $white);
+  }
+  &.btn-blue {
+    @include button-color($blue, $blue, $white);
+  }
+  &.btn-red {
+    @include button-color($red, $red, $white);
+  }
+}
+.btn-hollow {
+  &.btn-orange {
+    @include button-color(
+                    $white, $gray-400, $body-color,
+                    $white, $gray-400, $body-color,
+                    $white, $orange, $orange,
+                    $white, darken($orange, 20%), darken($orange, 20%));
+  }
+  &.btn-blue {
+    @include button-color(
+                    $white, $gray-400, $body-color,
+                    $white, $gray-400, $body-color,
+                    $white, $blue, $blue,
+                    $white, darken($blue, 20%), darken($blue, 20%));
+  }
+  &.btn-red {
+    @include button-color(
+                    $white, $gray-400, $body-color,
+                    $white, $gray-400, $body-color,
+                    $white, $red, $red,
+                    $white, darken($red, 20%), darken($red, 20%));
+  }
+}
+.btn-inverse {
+  &.btn-orange {
+    @include button-color(
+                    $white, $gray-400, $orange,
+                    $white, $gray-400, $orange,
+                    $orange, $orange, $white,
+                    darken($orange, 20%), darken($orange, 20%), $white);
+  }
+  &.btn-blue {
+    @include button-color(
+                    $white, $gray-400, $blue,
+                    $white, $gray-400, $blue,
+                    $blue, $blue, $white,
+                    darken($blue, 20%), darken($blue, 20%), $white);
+  }
+  &.btn-red {
+    @include button-color(
+                    $white, $gray-400, $red,
+                    $white, $gray-400, $red,
+                    $red, $red, $white,
+                    darken($red, 20%), darken($red, 20%), $white);
+  }
+}
+
+//.btn-link {
+//  font-weight: $font-weight-normal;
+//  color: $btn-link-color;
+//  text-decoration: $link-decoration;
+//  box-shadow: none;
+//  &:hover {
+//    color: $btn-link-hover-color;
+//    text-decoration: $link-hover-decoration;
+//  }
+//  &:focus,
+//  &.focus {
+//    text-decoration: $link-hover-decoration;
+//    box-shadow: none;
+//  }
+//  &.disabled,
+//  &[disabled] {
+//    cursor: not-allowed;
+//    color: $btn-link-disabled-color;
+//    pointer-events: none;
+//  }
+//}
 
 
 

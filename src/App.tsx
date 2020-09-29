@@ -1,38 +1,54 @@
-import React from 'react';
-import Button, {ButtonSize, ButtonType} from "./components/Button/button";
-import Menu from "./components/Menu/menu";
-import MenuItem from "./components/Menu/menuItem";
-import SubMenu from "./components/Menu/subMenu";
-import Icon from "./components/Icon/icon";
-import {library} from "@fortawesome/fontawesome-svg-core";
-import {fas} from "@fortawesome/free-solid-svg-icons";
-
-library.add(fas);
+import React from "react";
+import Button from "./components/Button/button";
+// import Menu from "./components/Menu/menu";
+// import MenuItem from "./components/Menu/menuItem";
+// import SubMenu from "./components/Menu/subMenu";
+// import Icon from "./components/Icon/icon";
+// import { library } from "@fortawesome/fontawesome-svg-core";
+// import { fas } from "@fortawesome/free-solid-svg-icons";
+//
+// library.add(fas);
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <Icon icon="arrow-down" theme="primary" size="10x" />
-        <Menu mode="horizontal" defaultOpenSubMenus={['2']} defaultIndex='0' onSelect={(index) => {alert(index)}}>
-          <MenuItem>
-            cool link
-          </MenuItem>
-          <MenuItem disabled>
-            cool link 2
-          </MenuItem>
-          <SubMenu title="dropdown">
-            <MenuItem>
-              dropdown 1
-            </MenuItem>
-            <MenuItem>
-              dropdown 2
-            </MenuItem>
-          </SubMenu>
-          <MenuItem>
-            cool link 3
-          </MenuItem>
-        </Menu>
+        <Button size="large" themeColor="blue">
+          Large Button
+        </Button>
+        <Button size="large" themeColor="red">
+          Large Button
+        </Button>
+        <Button size="large" themeColor="orange">
+          Large Button
+        </Button>
+        <Button size="large" themeColor="blue" btnType="hollow">
+          Large Button
+        </Button>
+        <Button size="large" themeColor="red" btnType="hollow">
+          Large Button
+        </Button>
+        <Button size="large" themeColor="orange" btnType="hollow">
+          Large Button
+        </Button>
+        <Button size="large" themeColor="blue" btnType="inverse">
+          Large Button
+        </Button>
+        <Button size="large" themeColor="red" btnType="inverse">
+          Large Button
+        </Button>
+        <Button size="large" themeColor="orange" btnType="inverse">
+          Large Button
+        </Button>
+        <Button size="large" themeColor="orange" shape="rectangular" btnType="inverse">
+          Large Button
+        </Button>
+        <Button size="large" themeColor="orange" shape="rounded">
+          Large Button
+        </Button>
+        <Button size="large" themeColor="orange" shape="elliptic">
+          Large Button
+        </Button>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

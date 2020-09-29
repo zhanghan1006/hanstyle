@@ -1,0 +1,9 @@
+# Ignore artifacts:
+build
+dist
+coverage
+
+# Ignore .prettierignore on .gitignore and .eslintignore
+.prettierignore
+.gitignore
+.eslintignore

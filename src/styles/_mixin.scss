@@ -1,36 +1,50 @@
-@mixin button-size($padding-y, $padding-x, $font-size, $border-raduis) {
+@mixin button-size-shape($padding-y, $padding-x, $font-size, $border-radius) {
   padding: $padding-y $padding-x;
   font-size: $font-size;
-  border-radius: $border-raduis;
+  border-radius: $border-radius;
 }
 
-@mixin button-style(
+@mixin button-color(
   $background,
   $border,
   $color,
-  $hover-background: lighten($background, 7.5%),
+  $focus-background: $background,
+  $focus-border: $border,
+  $focus-color: $color,
+  $hover-background: lighten($background, 10%),
   $hover-border: lighten($border, 10%),
   $hover-color: $color,
+  $active-background: darken($background, 10%),
+  $active-border: darken($border, 10%),
+  $active-color: $color,
+  $disabled-background: lighten($background, 20%),
+  $disabled-border: lighten($border, 20%),
+  $disabled-color: $color,
 ) {
   color: $color;
   background: $background;
   border-color: $border;
+  &:focus {
+    color: $focus-color;
+    background: $focus-background;
+    border-color: $focus-border;
+    outline: none;
+  }
   &:hover {
     color: $hover-color;
     background: $hover-background;
     border-color: $hover-border;
   }
-  &:focus,
-  &.focus {
-    color: $hover-color;
-    background: $hover-background;
-    border-color: $hover-border;
+  &:active {
+    color: $active-color;
+    background: $active-background;
+    border-color: $active-border;
   }
   &:disabled,
   &.disabled {
-    color: $color;
-    background: $background;
-    border-color: $border;
+    color: $disabled-color;
+    background: $disabled-background;
+    border-color: $disabled-border;
   }
 }
 
