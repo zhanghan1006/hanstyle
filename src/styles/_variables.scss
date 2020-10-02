@@ -176,7 +176,7 @@ $border-radius-sm:            .2rem !default;
 
 // 不同类型的 box shadow
 $box-shadow-sm:               0 .125rem .25rem rgba($black, .075) !default;
-$box-shadow:                  0 .5rem 1rem rgba($black, .15) !default;
+$box-shadow:                  .2rem .5rem 2rem rgba($black, .1) !default;
 $box-shadow-lg:               0 1rem 3rem rgba($black, .175) !default;
 $box-shadow-inset:            inset 0 1px 2px rgba($black, .075) !default;
 
@@ -290,3 +290,22 @@ $progress-bg:                       $gray-200 !default;
 $progress-border-radius:            $border-radius !default;
 $progress-bar-color:                $white !default;
 $progress-bar-transition:           width .6s ease !default;
+
+// Card
+$card-padding: 1.5rem !default;
+$card-border: $border-width solid $gray-200 !default;
+$card-box-shadow: $box-shadow !default;
+
+$card-rectangular-border-radius: 0 !default;
+$card-rounded-border-radius: $border-radius !default;
+
+$card-transition: box-shadow .3s ease-in-out !default;
+
+// Icon
+$icon-theme-colors: (
+        "black": $gray-900,
+        "white": $white,
+        "orange": $orange,
+        "blue": $blue,
+        "red": $red
+);

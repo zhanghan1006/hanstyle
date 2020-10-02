@@ -9,21 +9,28 @@ type BtnType = "solid" | "hollow" | "inverse";
 // type BtnHoverStyle = "lighten" | "color";
 // type BtnClickStyle = "darken";
 
-interface ExtendedButtonProps {
-  size?: BtnSize;
-  shape?: BtnShape;
-  themeColor?: BtnThemeColor;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLElement> {
+  btnSize?: BtnSize;
+  btnShape?: BtnShape;
+  btnThemeColor?: BtnThemeColor;
   btnType?: BtnType;
 }
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLElement> & ExtendedButtonProps;
-
 export const Button: FC<ButtonProps> = (props) => {
-  const { className, children, disabled, size, shape, themeColor, btnType, ...restProps } = props;
+  const {
+    className,
+    children,
+    disabled,
+    btnSize,
+    btnShape,
+    btnThemeColor,
+    btnType,
+    ...restProps
+  } = props;
   const classes = classNames(className, "btn", {
-    [`btn-${size}`]: size,
-    [`btn-${shape}`]: shape,
-    [`btn-${themeColor}`]: themeColor,
+    [`btn-${btnSize}`]: btnSize,
+    [`btn-${btnShape}`]: btnShape,
+    [`btn-${btnThemeColor}`]: btnThemeColor,
     [`btn-${btnType}`]: btnType,
   });
   return (
@@ -35,9 +42,9 @@ export const Button: FC<ButtonProps> = (props) => {
 
 Button.defaultProps = {
   disabled: false,
-  size: "middle",
-  shape: "rounded",
-  themeColor: "orange",
+  btnSize: "middle",
+  btnShape: "rounded",
+  btnThemeColor: "orange",
   btnType: "solid",
 };
 

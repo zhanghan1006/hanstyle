@@ -1,100 +1,218 @@
 .menu {
   display: flex;
-  flex-wrap: wrap;
-  padding-left: 0;
-  margin-bottom: 30px;
-  list-style: none;
-  border-bottom: $menu-border-width solid $menu-border-color;
-  box-shadow: $menu-box-shadow;
-  .menu-item {
-    padding: $menu-item-padding-y $menu-item-padding-x;
-    cursor: pointer;
-    transition: $menu-transition;
-    &:hover,
-    &:focus {
-      text-decoration: none;
-    }
-    &.is-disabled {
-      color: $menu-item-disabled-color;
-      pointer-events: none;
-      cursor: default;
-    }
-    &.is-active,
-    &:hover {
-      color: $menu-item-active-color;
-      border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
-    }
+  flex-wrap: nowrap;
+}
+.menu-item {
+  cursor: pointer;
+  padding: $menu-item-padding-y $menu-item-padding-x;
+  transition: $menu-transition;
+}
+
+// disabled
+.menu-item-disabled {
+  cursor: not-allowed;
+}
+
+// style & themeColor
+.menu-item-plain {
+  text-decoration: none;
+  list-style-type: none;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    list-style-type: none;
   }
-  .submenu-item {
-    position: relative;
-    .submenu-title {
-      display: flex;
-      align-items: center;
-    }
-    .arrow-icon {
-      transition: transform .25s ease-in-out;
-      margin-left: 5px;
-    }
-    &:hover {
-      .arrow-icon {
-        transform: rotate(180deg);
-      }
-    }
+  &.menu-item-orange {
+    @include menu-item-plain-color(
+                    $white, $white, $body-color,
+                    $white, $white, $orange,
+                    $white, $white, darken($orange, 20%),
+                    $white, $white, $orange,
+                    $white, $white, $gray-500);
   }
-  .is-vertical {
-    .arrow-icon {
-      transform: rotate(0deg) !important;
-    }
+  &.menu-item-blue {
+    @include menu-item-plain-color(
+                    $white, $white, $body-color,
+                    $white, $white, $blue,
+                    $white, $white, darken($blue, 20%),
+                    $white, $white, $blue,
+                    $white, $white, $gray-500);
   }
-  .is-vertical.is-opened {
-    .arrow-icon {
-      transform: rotate(180deg) !important;
-    }
-  }
-  .submenu {
-    //display: none;
-    list-style:none;
-    padding-left: 0;
-    white-space: nowrap;
-    //transition: $menu-transition;
-    .menu-item {
-      padding: $menu-item-padding-y $menu-item-padding-x;
-      cursor: pointer;
-      transition: $menu-transition;
-      color: $body-color;
-      &.is-active, &:hover {
-        color: $menu-item-active-color !important;
-      }
-    }
-  }
-  .submenu.menu-opened {
-    //display: block;
+  &.menu-item-red {
+    @include menu-item-plain-color(
+                    $white, $white, $body-color,
+                    $white, $white, $red,
+                    $white, $white, darken($red, 20%),
+                    $white, $white, $red,
+                    $white, $white, $gray-500);
   }
 }
-.menu-horizontal {
-  >.menu-item {
-    border-bottom: $menu-item-active-border-width solid transparent;
+.menu-item-border-top {
+  text-decoration: none;
+  list-style-type: none;
+  border-top: $menu-item-active-border-width solid $white;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    list-style-type: none;
   }
-  .submenu {
-    position: absolute;
-    background: $white;
-    z-index: 100;
-    top: calc(100% + 8px);
-    left: 0;
-    border: $menu-border-width solid $menu-border-color;
-    box-shadow: $submenu-box-shadow;
+  &.menu-item-orange {
+    @include menu-item-border-top-color(
+                    $white, $white, $body-color,
+                    $white, $white, $orange,
+                    $white, $white, darken($orange, 20%),
+                    $white, $orange, $orange,
+                    $white, $white, $gray-500);
+  }
+  &.menu-item-blue {
+    @include menu-item-border-top-color(
+                    $white, $white, $body-color,
+                    $white, $white, $blue,
+                    $white, $white, darken($blue, 20%),
+                    $white, $blue, $blue,
+                    $white, $white, $gray-500);
+  }
+  &.menu-item-red {
+    @include menu-item-border-top-color(
+                    $white, $white, $body-color,
+                    $white, $white, $red,
+                    $white, $white, darken($red, 20%),
+                    $white, $red, $red,
+                    $white, $white, $gray-500);
   }
 }
-.menu-vertical {
-  flex-direction: column;
-  border-bottom: 0;
-  border-right: $menu-border-width solid $menu-border-color;
-  .menu-item {
-    border-left: $menu-item-active-border-width solid transparent;
-    &.is-active,
-    &:hover {
-      border-bottom: 0;
-      border-left: $menu-item-active-border-width solid $menu-item-active-color;
-    }
+.menu-item-border-bottom {
+  text-decoration: none;
+  list-style-type: none;
+  border-bottom: $menu-item-active-border-width solid $white;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    list-style-type: none;
+  }
+  &.menu-item-orange {
+    @include menu-item-border-bottom-color(
+                    $white, $white, $body-color,
+                    $white, $white, $orange,
+                    $white, $white, darken($orange, 20%),
+                    $white, $orange, $orange,
+                    $white, $white, $gray-500);
+  }
+  &.menu-item-blue {
+    @include menu-item-border-bottom-color(
+                    $white, $white, $body-color,
+                    $white, $white, $blue,
+                    $white, $white, darken($blue, 20%),
+                    $white, $blue, $blue,
+                    $white, $white, $gray-500);
+  }
+  &.menu-item-red {
+    @include menu-item-border-bottom-color(
+                    $white, $white, $body-color,
+                    $white, $white, $red,
+                    $white, $white, darken($red, 20%),
+                    $white, $red, $red,
+                    $white, $white, $gray-500);
   }
 }
+
+//.menu {
+//  display: flex;
+//  flex-wrap: wrap;
+//  padding-left: 0;
+//  margin-bottom: 30px;
+//  list-style: none;
+//  border-bottom: $menu-border-width solid $menu-border-color;
+//  box-shadow: $menu-box-shadow;
+//  .menu-item {
+//    padding: $menu-item-padding-y $menu-item-padding-x;
+//    cursor: pointer;
+//    transition: $menu-transition;
+//    &:hover,
+//    &:focus {
+//      text-decoration: none;
+//    }
+//    &.is-disabled {
+//      color: $menu-item-disabled-color;
+//      pointer-events: none;
+//      cursor: default;
+//    }
+//    &.is-active,
+//    &:hover {
+//      color: $menu-item-active-color;
+//      border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+//    }
+//  }
+//  .submenu-item {
+//    position: relative;
+//    .submenu-title {
+//      display: flex;
+//      align-items: center;
+//    }
+//    .arrow-icon {
+//      transition: transform .25s ease-in-out;
+//      margin-left: 5px;
+//    }
+//    &:hover {
+//      .arrow-icon {
+//        transform: rotate(180deg);
+//      }
+//    }
+//  }
+//  .is-vertical {
+//    .arrow-icon {
+//      transform: rotate(0deg) !important;
+//    }
+//  }
+//  .is-vertical.is-opened {
+//    .arrow-icon {
+//      transform: rotate(180deg) !important;
+//    }
+//  }
+//  .submenu {
+//    //display: none;
+//    list-style:none;
+//    padding-left: 0;
+//    white-space: nowrap;
+//    //transition: $menu-transition;
+//    .menu-item {
+//      padding: $menu-item-padding-y $menu-item-padding-x;
+//      cursor: pointer;
+//      transition: $menu-transition;
+//      color: $body-color;
+//      &.is-active, &:hover {
+//        color: $menu-item-active-color !important;
+//      }
+//    }
+//  }
+//  .submenu.menu-opened {
+//    //display: block;
+//  }
+//}
+//.menu-horizontal {
+//  >.menu-item {
+//    border-bottom: $menu-item-active-border-width solid transparent;
+//  }
+//  .submenu {
+//    position: absolute;
+//    background: $white;
+//    z-index: 100;
+//    top: calc(100% + 8px);
+//    left: 0;
+//    border: $menu-border-width solid $menu-border-color;
+//    box-shadow: $submenu-box-shadow;
+//  }
+//}
+//.menu-vertical {
+//  flex-direction: column;
+//  border-bottom: 0;
+//  border-right: $menu-border-width solid $menu-border-color;
+//  .menu-item {
+//    border-left: $menu-item-active-border-width solid transparent;
+//    &.is-active,
+//    &:hover {
+//      border-bottom: 0;
+//      border-left: $menu-item-active-border-width solid $menu-item-active-color;
+//    }
+//  }
+//}

@@ -7,9 +7,9 @@ const defaultProps = {
 };
 
 const testProps: ButtonProps = {
-  size: "large",
-  shape: "rectangular",
-  themeColor: "blue",
+  btnSize: "large",
+  btnShape: "rectangular",
+  btnThemeColor: "blue",
   btnType: "inverse",
   className: "klass",
 };
@@ -20,23 +20,27 @@ const disabledProps: ButtonProps = {
 };
 
 describe("test Button component", () => {
-  it("should render the correct default button", () => {
+  test("should render the correct default button", () => {
     const wrapper = render(<Button {...defaultProps}>Nice</Button>);
     const element = wrapper.getByText("Nice") as HTMLButtonElement;
     expect(element).toBeInTheDocument();
     expect(element.tagName).toEqual("BUTTON");
-    expect(element).toHaveClass("btn btn-middle btn-rounded btn-orange btn-solid");
+    expect(element).toHaveClass(
+      "btn btn-middle btn-rounded btn-orange btn-solid"
+    );
     expect(element.disabled).toBeFalsy();
     fireEvent.click(element);
     expect(defaultProps.onClick).toHaveBeenCalled();
   });
-  it("should render the correct component based on different props", () => {
+  test("should render the correct component based on different props", () => {
     const wrapper = render(<Button {...testProps}>Nice</Button>);
     const element = wrapper.getByText("Nice");
     expect(element).toBeInTheDocument();
-    expect(element).toHaveClass("btn btn-large btn-rectangular btn-blue btn-inverse klass");
+    expect(element).toHaveClass(
+      "btn btn-large btn-rectangular btn-blue btn-inverse klass"
+    );
   });
-  it("should render disabled button when disabled set to true", () => {
+  test("should render disabled button when disabled set to true", () => {
     const wrapper = render(<Button {...disabledProps}>Nice</Button>);
     const element = wrapper.getByText("Nice") as HTMLButtonElement;
     expect(element).toBeInTheDocument();

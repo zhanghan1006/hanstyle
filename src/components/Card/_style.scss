@@ -1,0 +1,19 @@
+.card {
+  display: inline-flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  padding: $card-padding;
+  border: $card-border;
+  transition: $card-transition;
+  &:hover {
+    box-shadow: $card-box-shadow;
+  }
+}
+
+// shape
+.card-rectangular {
+  border-radius: $card-rectangular-border-radius;
+}
+.card-rounded {
+  border-radius: $card-rounded-border-radius;
+}
