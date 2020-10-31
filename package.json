@@ -50,7 +50,8 @@
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
     "prepublishOnly": "npm run test:nowatch && npm run lint && npm run build",
     "storybook": "start-storybook -p 6006 --no-dll",
-    "build-storybook": "build-storybook"
+    "clean-storybook": "rimraf ./storybook-static",
+    "build-storybook": "npm run clean-storybook && build-storybook"
   },
   "husky": {
     "hooks": {
