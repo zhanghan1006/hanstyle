@@ -1,0 +1,9 @@
+.image {
+  display: block;
+  > div {
+    display: inline-block;
+    > img {
+      display: inline-block;
+    }
+  }
+}

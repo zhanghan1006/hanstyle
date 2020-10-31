@@ -1,16 +1,16 @@
 import { FC } from "react";
-// import Menu, { MenuProps } from "./menu";
-// import SubMenu, { SubMenuProps } from "./subMenu";
-// import MenuItem, { MenuItemProps } from "./menuItem";
-//
-// export type IMenuComponent = FC<MenuProps> & {
-//     Item: FC<MenuItemProps>,
-//     SubMenu: FC<SubMenuProps>
-// }
-//
-// const TransMenu = Menu as IMenuComponent
-//
-// TransMenu.Item = MenuItem
-// TransMenu.SubMenu = SubMenu
-//
-// export default TransMenu
+import Menu, { MenuProps } from "./menu";
+import SubMenu, { SubmenuProps } from "./submenu";
+import MenuItem, { MenuItemProps } from "./menuItem";
+
+export type IMenuComponent = FC<MenuProps> & {
+  Item: FC<MenuItemProps>;
+  Submenu: FC<SubmenuProps>;
+};
+
+const MenuComponent = Menu as IMenuComponent;
+
+MenuComponent.Item = MenuItem;
+MenuComponent.Submenu = SubMenu;
+
+export default MenuComponent;

@@ -1,50 +1,65 @@
 .divider {
-  display: inline-flex;
-  width: 100%;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
   hr {
-    display: inline-block;
-    color: $gray-900;
-  }
-  p {
-    display: inline-block;
-    padding: 0 1rem;
+    display: block;
     margin: 0;
-    flex-grow: 0;
-    color: $gray-900;
+  }
+
+  &.divider-empty {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 1px;
+  }
+  &.divider-plain {
+    display: inline-flex;
+    width: 100%;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    p {
+      display: inline-block;
+      padding: 0 1rem;
+      margin: 0;
+      flex-grow: 0;
+      color: $gray-900;
+    }
+    &.divider-left {
+      hr:nth-of-type(1) {
+        flex-grow: 1;
+      }
+      hr:nth-of-type(2) {
+        flex-grow: 4;
+      }
+    }
+    &.divider-center {
+      hr:nth-of-type(1) {
+        flex-grow: 1;
+      }
+      hr:nth-of-type(2) {
+        flex-grow: 1;
+      }
+    }
+    &.divider-right {
+      hr:nth-of-type(1) {
+        flex-grow: 4;
+      }
+      hr:nth-of-type(2) {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  // line color
+  @each $key, $val in $base-and-neutral-colors {
+    &.divider-line-#{$key} {
+      background-color: $white;
+      hr {
+        color: $val;
+        background-color: $val;
+      }
+    }
   }
 }
 
-.divider-empty {
-  hr {
-    flex-grow: 1;
-  }
-}
-.divider-plain {
-  &.divider-left {
-    hr:nth-of-type(1) {
-      flex-grow: 1;
-    }
-    hr:nth-of-type(2) {
-      flex-grow: 4;
-    }
-  }
-  &.divider-center {
-    hr:nth-of-type(1) {
-      flex-grow: 1;
-    }
-    hr:nth-of-type(2) {
-      flex-grow: 1;
-    }
-  }
-  &.divider-right {
-    hr:nth-of-type(1) {
-      flex-grow: 4;
-    }
-    hr:nth-of-type(2) {
-      flex-grow: 1;
-    }
-  }
-}
+
+

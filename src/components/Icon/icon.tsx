@@ -4,23 +4,52 @@ import {
   FontAwesomeIcon,
   FontAwesomeIconProps,
 } from "@fortawesome/react-fontawesome";
+import { BaseColor, NeutralColor } from "../variables";
+import { IconProp, library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 
-type IconThemeColor = "black" | "white" | "orange" | "blue" | "red";
+library.add(fas);
+library.add(far);
+library.add(fab);
+
+export type IconThemeColor = BaseColor | NeutralColor;
 
 export interface IconProps extends FontAwesomeIconProps {
+  /**
+   * The icon you want to use.
+   */
+  icon: IconProp;
+  /**
+   * The theme color of the icon.
+   */
   iconThemeColor?: IconThemeColor;
 }
 
+/**
+ * To show an icon provided in Font Awesome.
+ *
+ * ## How to Import
+ * ~~~js
+ * import { Icon } from "hanstyle";
+ * ~~~
+ * ## Props
+ * - All the props listed in the props table.
+ * - All the props in the FontAwesomeIconProps.
+ * @param props
+ * @constructor
+ */
 export const Icon: FC<IconProps> = (props) => {
   const { className, iconThemeColor, ...restProps } = props;
   const classes = classNames(className, "icon", {
-    [`icon-${iconThemeColor}`]: iconThemeColor,
+    [`icon-theme-color-${iconThemeColor}`]: iconThemeColor,
   });
   return <FontAwesomeIcon className={classes} {...restProps} />;
 };
 
 Icon.defaultProps = {
-  iconThemeColor: "black",
+  iconThemeColor: "gray-0",
 };
 
 export default Icon;

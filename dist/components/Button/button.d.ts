@@ -1,26 +1,41 @@
-import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
-export declare type ButtonSize = 'lg' | 'sm';
-export declare type ButtonType = 'primary' | 'default' | 'danger' | 'link';
-interface BaseButtonProps {
-    className?: string;
-    /**设置 Button 的禁用*/
-    disabled?: boolean;
-    /**设置 Button 的尺寸*/
-    size?: ButtonSize;
-    /**设置 Button 的类型*/
-    btnType?: ButtonType;
-    children: React.ReactNode;
-    href?: string;
+import { FC, ButtonHTMLAttributes } from "react";
+import { BaseColor, BaseSize, NeutralColor } from "../variables";
+export declare type ButtonSize = BaseSize;
+export declare type ButtonShape = "rectangular" | "rounded" | "elliptic" | "circle";
+export declare type ButtonThemeColor = BaseColor | NeutralColor;
+export declare type ButtonType = "solid" | "hollow" | "inverse";
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    /**
+     * Is the Button disabled?
+     */
+    buttonDisabled?: boolean;
+    /**
+     * How large is the Button?
+     */
+    buttonSize?: ButtonSize;
+    /**
+     * What is the shape of the Button?
+     */
+    buttonShape?: ButtonShape;
+    /**
+     * What is the theme color of the Button?
+     */
+    buttonThemeColor?: ButtonThemeColor;
+    /**
+     * What type of the Button to be used (including when interacting with the Button)?
+     */
+    buttonType?: ButtonType;
 }
-declare type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>;
-declare type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
-export declare type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 /**
- * 这是我们的第一个 Button 组件
- * ## Button header
+ * To perform an operation when clicked.
+ *
+ * ## How to Import
  * ~~~js
- * import { Button } from 'hanstyle'
+ * import { Button } from "hanstyle";
  * ~~~
+ * ## Props
+ * - All the props listed in the props table.
+ * - All attributes of the HTML &lt;button&gt; element.
  * @param props
  * @constructor
  */

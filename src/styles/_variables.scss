@@ -1,5 +1,22 @@
-// neutral palette
-$white: #ffffff !default;
+// neutral color
+$gray-0: #000000 !default;
+$gray-1: #1f1f1f !default;
+$gray-2: #2f2f2f !default;
+$gray-3: #3f3f3f !default;
+$gray-4: #4f4f4f !default;
+$gray-5: #5f5f5f !default;
+$gray-6: #6f6f6f !default;
+$gray-7: #7f7f7f !default;
+$gray-8: #8f8f8f !default;
+$gray-9: #9f9f9f !default;
+$gray-10: #afafaf !default;
+$gray-11: #bfbfbf !default;
+$gray-12: #cfcfcf !default;
+$gray-13: #dfdfdf !default;
+$gray-14: #efefef !default;
+$gray-15: #ffffff !default;
+
+$white: $gray-15 !default;
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
@@ -9,9 +26,9 @@ $gray-600: #6c757d !default;
 $gray-700: #495057 !default;
 $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
-$black: #000000 !default;
+$black: $gray-0 !default;
 
-// base palette
+// base color
 $blue: #0d6efd !default;
 $indigo: #6610f2 !default;
 $purple: #6f42c1 !default;
@@ -34,6 +51,72 @@ $warning: $yellow !default;
 $danger: $red !default;
 $light: $gray-100 !default;
 $dark: $gray-800 !default;
+
+$base-colors: (
+        "red": $red,
+        "orange": $orange,
+        "yellow": $yellow,
+        "green": $green,
+        "teal": $teal,
+        "cyan": $cyan,
+        "blue": $blue,
+        "indigo": $indigo,
+        "purple": $purple,
+        "pink": $pink
+);
+
+$neutral-colors: (
+        "gray-0": $gray-0,
+        "gray-1": $gray-1,
+        "gray-2": $gray-2,
+        "gray-3": $gray-3,
+        "gray-4": $gray-4,
+        "gray-5": $gray-5,
+        "gray-6": $gray-6,
+        "gray-7": $gray-7,
+        "gray-8": $gray-8,
+        "gray-9": $gray-9,
+        "gray-10": $gray-10,
+        "gray-11": $gray-11,
+        "gray-12": $gray-12,
+        "gray-13": $gray-13,
+        "gray-14": $gray-14,
+        "gray-15": $gray-15
+);
+
+$base-and-neutral-colors: (
+        "red": $red,
+        "orange": $orange,
+        "yellow": $yellow,
+        "green": $green,
+        "teal": $teal,
+        "cyan": $cyan,
+        "blue": $blue,
+        "indigo": $indigo,
+        "purple": $purple,
+        "pink": $pink,
+        "gray-0": $gray-0,
+        "gray-1": $gray-1,
+        "gray-2": $gray-2,
+        "gray-3": $gray-3,
+        "gray-4": $gray-4,
+        "gray-5": $gray-5,
+        "gray-6": $gray-6,
+        "gray-7": $gray-7,
+        "gray-8": $gray-8,
+        "gray-9": $gray-9,
+        "gray-10": $gray-10,
+        "gray-11": $gray-11,
+        "gray-12": $gray-12,
+        "gray-13": $gray-13,
+        "gray-14": $gray-14,
+        "gray-15": $gray-15
+);
+
+$black-white: (
+        "black": $black,
+        "white": $white
+);
 
 $theme-colors: (
   "primary":    $primary,
@@ -100,7 +183,7 @@ $headings-color:              null !default;
 
 // Paragraphs
 
-$paragraph-margin-bottom:   1rem !default;
+$paragraph-margin-bottom:   0 !default;
 
 // 字体其他部分 heading list hr 等等
 $headings-margin-bottom:      $spacer / 2 !default;
@@ -166,7 +249,6 @@ $pre-color:                         null !default;
 $enable-pointer-cursor-for-buttons:           true !default;
 
 // 边框 和 border radius
-
 $border-width:                1px !default;
 $border-color:                $gray-300 !default;
 
@@ -180,8 +262,8 @@ $box-shadow:                  .2rem .5rem 2rem rgba($black, .1) !default;
 $box-shadow-lg:               0 1rem 3rem rgba($black, .175) !default;
 $box-shadow-inset:            inset 0 1px 2px rgba($black, .075) !default;
 
-// 按钮
-// 按钮基本属性
+// Button
+// Button基本属性
 $btn-font-weight:             400;
 $btn-padding-y:               .375rem !default;
 $btn-padding-x:               .75rem !default;
@@ -189,7 +271,7 @@ $btn-font-family:             $font-family-base !default;
 $btn-font-size:               $font-size-base !default;
 $btn-line-height:             $line-height-base !default;
 
-//不同大小按钮的 padding 和 font size
+// 不同大小Button的 padding 和 font size
 $btn-padding-y-sm:            .25rem !default;
 $btn-padding-x-sm:            .5rem !default;
 $btn-font-size-sm:            $font-size-sm !default;
@@ -198,20 +280,20 @@ $btn-padding-y-lg:            .5rem !default;
 $btn-padding-x-lg:            1rem !default;
 $btn-font-size-lg:            $font-size-lg !default;
 
-// 按钮边框
+// Button边框
 $btn-border-width:            $border-width !default;
 
-// 按钮其他
+// Button其他
 $btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075) !default;
 $btn-disabled-opacity:        .65 !default;
 
-// 链接按钮
+// 链接Button
 $btn-link-color:              $link-color !default;
 $btn-link-hover-color:        $link-hover-color !default;
 $btn-link-disabled-color:     $gray-600 !default;
 
 
-// 按钮 radius
+// Button radius
 $btn-border-radius:           $border-radius !default;
 $btn-border-radius-lg:        $border-radius-lg !default;
 $btn-border-radius-sm:        $border-radius-sm !default;
@@ -301,11 +383,28 @@ $card-rounded-border-radius: $border-radius !default;
 
 $card-transition: box-shadow .3s ease-in-out !default;
 
-// Icon
-$icon-theme-colors: (
-        "black": $gray-900,
-        "white": $white,
-        "orange": $orange,
-        "blue": $blue,
-        "red": $red
+// List
+$list-border-radius-sizes: (
+        "none": 0,
+        "small": .3rem,
+        "middle": .6rem,
+        "large": 1rem
+);
+$list-shadow-sizes: (
+        "none": 0,
+        "small": 0 .125rem .25rem rgba($black, .075),
+        "middle": .2rem .5rem 2rem rgba($black, .1),
+        "large": 0 1rem 3rem rgba($black, .175)
+);
+
+// Input
+$input-content-size-paddings: (
+        "small": 3px 6px,
+        "middle": 6px 9px,
+        "large": 9px 12px
+);
+$input-affix-size-paddings: (
+        "small": 3px 12px,
+        "middle": 6px 15px,
+        "large": 9px 18px
 );

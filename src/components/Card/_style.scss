@@ -2,12 +2,10 @@
   display: inline-flex;
   flex-flow: row wrap;
   align-items: flex-start;
-  padding: $card-padding;
+  padding: 0;
+  margin: 0;
   border: $card-border;
   transition: $card-transition;
-  &:hover {
-    box-shadow: $card-box-shadow;
-  }
 }
 
 // shape
@@ -16,4 +14,9 @@
 }
 .card-rounded {
   border-radius: $card-rounded-border-radius;
+}
+
+// hover shadow
+.card-hover-shadow:hover {
+  box-shadow: $card-box-shadow;
 }

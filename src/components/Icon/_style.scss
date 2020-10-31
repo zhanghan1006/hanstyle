@@ -1,6 +1,7 @@
 .icon {
-  @each $key, $val in $icon-theme-colors {
-    &.icon-#{$key} {
+  transition: color .15s ease-in-out;
+  @each $key, $val in $base-and-neutral-colors {
+    &.icon-theme-color-#{$key} {
       color: $val;
     }
   }

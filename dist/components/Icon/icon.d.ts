@@ -1,8 +1,30 @@
-import React from "react";
+import { FC } from "react";
 import { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
-export declare type ThemeProps = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'light' | 'dark';
+import { BaseColor, NeutralColor } from "../variables";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+export declare type IconThemeColor = BaseColor | NeutralColor;
 export interface IconProps extends FontAwesomeIconProps {
-    theme?: ThemeProps;
+    /**
+     * The icon you want to use.
+     */
+    icon: IconProp;
+    /**
+     * The theme color of the icon.
+     */
+    iconThemeColor?: IconThemeColor;
 }
-declare const Icon: React.FC<IconProps>;
+/**
+ * To show an icon provided in Font Awesome.
+ *
+ * ## How to Import
+ * ~~~js
+ * import { Icon } from "hanstyle";
+ * ~~~
+ * ## Props
+ * - All the props listed in the props table.
+ * - All the props in the FontAwesomeIconProps.
+ * @param props
+ * @constructor
+ */
+export declare const Icon: FC<IconProps>;
 export default Icon;

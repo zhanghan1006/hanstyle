@@ -1,119 +1,87 @@
-import React, { ButtonHTMLAttributes, FC } from "react";
+import React, { FC, ButtonHTMLAttributes } from "react";
 import classNames from "classnames";
-// import * as CSS from "csstype";
+import { BaseColor, BaseSize, NeutralColor } from "../variables";
 
-type BtnSize = "small" | "middle" | "large";
-type BtnShape = "rectangular" | "rounded" | "elliptic";
-type BtnThemeColor = "orange" | "blue" | "red";
-type BtnType = "solid" | "hollow" | "inverse";
-// type BtnHoverStyle = "lighten" | "color";
-// type BtnClickStyle = "darken";
+export type ButtonSize = BaseSize;
+export type ButtonShape = "rectangular" | "rounded" | "elliptic" | "circle";
+export type ButtonThemeColor = BaseColor | NeutralColor;
+export type ButtonType = "solid" | "hollow" | "inverse";
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLElement> {
-  btnSize?: BtnSize;
-  btnShape?: BtnShape;
-  btnThemeColor?: BtnThemeColor;
-  btnType?: BtnType;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * Is the Button disabled?
+   */
+  buttonDisabled?: boolean;
+  /**
+   * How large is the Button?
+   */
+  buttonSize?: ButtonSize;
+  /**
+   * What is the shape of the Button?
+   */
+  buttonShape?: ButtonShape;
+  /**
+   * What is the theme color of the Button?
+   */
+  buttonThemeColor?: ButtonThemeColor;
+  /**
+   * What type of the Button to be used (including when interacting with the Button)?
+   */
+  buttonType?: ButtonType;
+  // buttonZoom?: boolean; // (hover放大，active缩小)
 }
 
+/**
+ * To perform an operation when clicked.
+ *
+ * ## How to Import
+ * ~~~js
+ * import { Button } from "hanstyle";
+ * ~~~
+ * ## Props
+ * - All the props listed in the props table.
+ * - All attributes of the HTML &lt;button&gt; element.
+ * @param props
+ * @constructor
+ */
 export const Button: FC<ButtonProps> = (props) => {
   const {
     className,
     children,
-    disabled,
-    btnSize,
-    btnShape,
-    btnThemeColor,
-    btnType,
+    buttonDisabled,
+    buttonSize,
+    buttonShape,
+    buttonThemeColor,
+    buttonType,
+    onClick,
     ...restProps
   } = props;
-  const classes = classNames(className, "btn", {
-    [`btn-${btnSize}`]: btnSize,
-    [`btn-${btnShape}`]: btnShape,
-    [`btn-${btnThemeColor}`]: btnThemeColor,
-    [`btn-${btnType}`]: btnType,
+  const classes = classNames(className, "button", {
+    disabled: buttonDisabled,
+    [`button-${buttonSize}`]: buttonSize,
+    [`button-${buttonShape}`]: buttonShape,
+    [`button-${buttonThemeColor}`]: buttonThemeColor,
+    [`button-${buttonType}`]: buttonType,
   });
   return (
-    <button className={classes} disabled={disabled} {...restProps}>
+    <button
+      className={classes}
+      onClick={buttonDisabled ? undefined : onClick}
+      {...restProps}
+    >
       {children}
     </button>
   );
 };
 
 Button.defaultProps = {
-  disabled: false,
-  btnSize: "middle",
-  btnShape: "rounded",
-  btnThemeColor: "orange",
-  btnType: "solid",
+  buttonDisabled: false,
+  buttonSize: "middle",
+  buttonShape: "rounded",
+  buttonThemeColor: "orange",
+  buttonType: "solid",
 };
 
-export default Button;
+Button.displayName = "Button";
 
-// import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
-// import classNames from "classnames";
-//
-// export type ButtonSize = "lg" | "sm";
-// export type ButtonType = "primary" | "default" | "danger" | "link";
-//
-// interface BaseButtonProps {
-//   className?: string;
-//   /**设置 Button 的禁用*/
-//   disabled?: boolean;
-//   /**设置 Button 的尺寸*/
-//   size?: ButtonSize;
-//   /**设置 Button 的类型*/
-//   btnType?: ButtonType;
-//   children: React.ReactNode;
-//   href?: string;
-// }
-//
-// type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>;
-// type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
-// export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
-// /**
-//  * 这是我们的第一个 Button 组件
-//  * ## Button header
-//  * ~~~js
-//  * import { Button } from 'hanstyle'
-//  * ~~~
-//  * @param props
-//  * @constructor
-//  */
-// // 下面这个export一定要加
-// export const Button: FC<ButtonProps> = (props) => {
-//   const {
-//     className,
-//     disabled,
-//     size,
-//     btnType,
-//     children,
-//     href,
-//     ...restProps
-//   } = props;
-//   const classes = classNames("btn", className, {
-//     [`btn-${btnType}`]: btnType,
-//     [`btn-${size}`]: size,
-//     disabled: btnType === "link" && disabled,
-//   });
-//   if (btnType === "link" && href) {
-//     return (
-//       <a href={href} className={classes} {...restProps}>
-//         {children}
-//       </a>
-//     );
-//   } else {
-//     return (
-//       <button className={classes} disabled={disabled} {...restProps}>
-//         {children}
-//       </button>
-//     );
-//   }
-// };
-//
-// Button.defaultProps = {
-//   disabled: false,
-//   btnType: "default",
-// };
-//
-// export default Button;
+export default Button;

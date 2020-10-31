@@ -1,12 +1,20 @@
-import React, { FC, LiHTMLAttributes, useContext } from "react";
+import React, { FC, HTMLAttributes, useContext } from "react";
 import classNames from "classnames";
 import { MenuContext } from "./menu";
 
-export type MenuItemIndex = Exclude<number, 0>;
-
-export interface MenuItemProps extends LiHTMLAttributes<HTMLElement> {
-  menuItemIndex: MenuItemIndex;
+export interface MenuItemProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * This is auto-generated. You do not need to set it manually.
+   */
+  menuItemIndex?: number[];
+  /**
+   * Controls whether the menu item is disabled.
+   */
   menuItemDisabled?: boolean;
+  /**
+   * This is auto-generated. You do not need to set it manually.
+   */
+  menuItemSelectable?: boolean;
 }
 
 export const MenuItem: FC<MenuItemProps> = (props) => {
@@ -15,36 +23,58 @@ export const MenuItem: FC<MenuItemProps> = (props) => {
     children,
     menuItemIndex,
     menuItemDisabled,
+    menuItemSelectable,
     ...restProps
   } = props;
-  const menuContext = useContext(MenuContext);
   const {
     menuStyle,
     menuThemeColor,
-    curIndex,
-    handleMenuItemClick,
-  } = menuContext;
+    selectedIndex,
+    changeSelectedIndex,
+  } = useContext(MenuContext);
+  const isChildrenSelected = () => {
+    if (selectedIndex.length > menuItemIndex!.length) {
+      let result = true;
+      menuItemIndex!.map((value, index) => {
+        if (value !== selectedIndex[index]) {
+          result = false;
+        }
+        return undefined;
+      });
+      return result;
+    }
+    return false;
+  };
   const classes = classNames(className, "menu-item", {
     [`menu-item-${menuStyle}`]: menuStyle,
     [`menu-item-${menuThemeColor}`]: menuThemeColor,
-    "menu-item-selected": curIndex === menuItemIndex,
+    "menu-item-selected":
+      selectedIndex.toString() === menuItemIndex!.toString() ||
+      isChildrenSelected(),
     "menu-item-disabled": menuItemDisabled,
   });
   const handleClick = () => {
-    if (curIndex !== menuItemIndex && !menuItemDisabled) {
-      handleMenuItemClick(menuItemIndex);
+    if (menuItemSelectable && selectedIndex !== menuItemIndex) {
+      changeSelectedIndex(menuItemIndex!);
     }
   };
   return (
-    <li className={classes} onClick={handleClick} {...restProps}>
+    <div
+      className={classes}
+      onClick={menuItemDisabled ? undefined : handleClick}
+      {...restProps}
+    >
       {children}
-    </li>
+    </div>
   );
 };
 
 MenuItem.defaultProps = {
   menuItemDisabled: false,
+  menuItemSelectable: true,
 };
+
+MenuItem.displayName = "MenuItem";
 
 export default MenuItem;
 

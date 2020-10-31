@@ -23,32 +23,37 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React from "react";
 import classNames from "classnames";
 /**
- * 这是我们的第一个 Button 组件
- * ## Button header
+ * To perform an operation when clicked.
+ *
+ * ## How to Import
  * ~~~js
- * import { Button } from 'hanstyle'
+ * import { Button } from "hanstyle";
  * ~~~
+ * ## Props
+ * - All the props listed in the props table.
+ * - All attributes of the HTML &lt;button&gt; element.
  * @param props
  * @constructor
  */
-// 下面这个export一定要加
 export var Button = function (props) {
     var _a;
-    var className = props.className, disabled = props.disabled, size = props.size, btnType = props.btnType, children = props.children, href = props.href, restProps = __rest(props, ["className", "disabled", "size", "btnType", "children", "href"]);
-    var classes = classNames('btn', className, (_a = {},
-        _a["btn-" + btnType] = btnType,
-        _a["btn-" + size] = size,
-        _a['disabled'] = (btnType === 'link') && disabled,
+    var className = props.className, children = props.children, buttonDisabled = props.buttonDisabled, buttonSize = props.buttonSize, buttonShape = props.buttonShape, buttonThemeColor = props.buttonThemeColor, buttonType = props.buttonType, onClick = props.onClick, restProps = __rest(props, ["className", "children", "buttonDisabled", "buttonSize", "buttonShape", "buttonThemeColor", "buttonType", "onClick"]);
+    var classes = classNames(className, "button", (_a = {
+            disabled: buttonDisabled
+        },
+        _a["button-" + buttonSize] = buttonSize,
+        _a["button-" + buttonShape] = buttonShape,
+        _a["button-" + buttonThemeColor] = buttonThemeColor,
+        _a["button-" + buttonType] = buttonType,
         _a));
-    if (btnType === 'link' && href) {
-        return (React.createElement("a", __assign({ href: href, className: classes }, restProps), children));
-    }
-    else {
-        return (React.createElement("button", __assign({ className: classes, disabled: disabled }, restProps), children));
-    }
+    return (React.createElement("button", __assign({ className: classes, onClick: buttonDisabled ? undefined : onClick }, restProps), children));
 };
 Button.defaultProps = {
-    disabled: false,
-    btnType: 'default'
+    buttonDisabled: false,
+    buttonSize: "middle",
+    buttonShape: "rounded",
+    buttonThemeColor: "orange",
+    buttonType: "solid",
 };
+Button.displayName = "Button";
 export default Button;

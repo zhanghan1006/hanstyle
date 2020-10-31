@@ -1,73 +1,113 @@
-import React, { useState } from 'react'
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
-import { Input } from './input'
+import React from "react";
+// also exported from '@storybook/react' if you can deal with breaking changes in 6.1
+import { Story, Meta } from "@storybook/react/types-6-0";
+import Input, { InputProps } from "./input";
+import InputContent from "./inputContent";
+import InputAffix from "./inputAffix";
 
-const ControlledInput = () => {
-  const [value, setValue] = useState()
-  return <Input value={value} defaultValue={value} onChange={(e) => {setValue(e.target.value)}}/>
-}
-const defaultInput = () => (
-  <>
-  <Input
-    style={{width: '300px'}}
-    placeholder="placeholder"
-    onChange={action('changed')}
-  />
-  <ControlledInput />
-  </>
-)
-const disabledInput = () => (
-  <Input
-    style={{width: '300px'}}
-    placeholder="disabled input"
-    disabled 
-  />
-)
+export default {
+  title: "Components/Input",
+  component: Input,
+  subcomponents: { InputContent, InputAffix },
+  argTypes: {
+    inputSize: {},
+    inputThemeColor: {
+      control: {
+        type: "select",
+        options: [
+          "red",
+          "orange",
+          "yellow",
+          "green",
+          "teal",
+          "cyan",
+          "blue",
+          "indigo",
+          "purple",
+          "pink",
+          "gray-0",
+          "gray-1",
+          "gray-2",
+          "gray-3",
+          "gray-4",
+          "gray-5",
+          "gray-6",
+          "gray-7",
+          "gray-8",
+          "gray-9",
+          "gray-10",
+          "gray-11",
+          "gray-12",
+          "gray-13",
+          "gray-14",
+          "gray-15",
+        ],
+      },
+    },
+    inputStyle: {
+      control: {
+        type: "select",
+        options: ["luminous"],
+      },
+    },
+  },
+} as Meta;
 
-const iconInput = () => (
-  <Input
-    style={{width: '300px'}}
-    placeholder="input with icon"
-    icon="search"
-  />  
-)
+const Template: Story<InputProps> = (args) => {
+  const { children, ...restArgs } = args;
+  return <Input {...restArgs}>{children}</Input>;
+};
 
-const sizeInput = () => (
-  <>
-    <Input
-      style={{width: '300px'}}
-      defaultValue="large size"
-      size="lg"
-    />
-    <Input
-      style={{width: '300px'}}
-      placeholder="small size"
-      size="sm"
-    />
-  </>
-)
+export const Default = Template.bind({});
+Default.args = {
+  children: <InputContent />,
+};
 
-const pandInput = () => (
-  <>
-    <Input
-      style={{width: '300px'}}
-      defaultValue="prepend text"
-      prepend="https://"
-    />
-    <Input
-      style={{width: '300px'}}
-      defaultValue="google"
-      append=".com"
-    />
-    
-  </>
-)
+export const Small = Template.bind({});
+Small.args = {
+  ...Default.args,
+  inputSize: "small",
+};
 
+export const Large = Template.bind({});
+Large.args = {
+  ...Default.args,
+  inputSize: "large",
+};
 
-storiesOf('Input component', module)
-  .add('Input', defaultInput)
-  .add('被禁用的 Input', disabledInput)
-  .add('带图标的 Input', iconInput)
-  .add('大小不同的 Input', sizeInput)
-  .add('带前后缀的 Input', pandInput)
+export const Blue = Template.bind({});
+Blue.args = {
+  ...Default.args,
+  inputThemeColor: "blue",
+};
+
+export const InitialValue = Template.bind({});
+InitialValue.args = {
+  ...Default.args,
+  children: (
+    <InputContent inputContentInitValue={"This is the initial value."} />
+  ),
+};
+
+export const Prefix = Template.bind({});
+Prefix.args = {
+  ...Default.args,
+  children: [<InputAffix>https://</InputAffix>, <InputContent />],
+};
+
+export const Suffix = Template.bind({});
+Suffix.args = {
+  ...Default.args,
+  children: [<InputContent />, <InputAffix>.com</InputAffix>],
+};
+
+export const PrefixAndSuffix = Template.bind({});
+PrefixAndSuffix.args = {
+  ...Default.args,
+  children: [
+    <InputAffix>https://</InputAffix>,
+    <InputContent />,
+    <InputAffix>.com</InputAffix>,
+  ],
+};
+PrefixAndSuffix.storyName = "Prefix and Suffix";

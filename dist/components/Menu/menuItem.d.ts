@@ -1,9 +1,17 @@
-import React from "react";
-export interface MenuItemProps {
-    index?: string;
-    disabled?: boolean;
-    className?: string;
-    style?: React.CSSProperties;
+import { FC, HTMLAttributes } from "react";
+export interface MenuItemProps extends HTMLAttributes<HTMLDivElement> {
+    /**
+     * This is auto-generated. You do not need to set it manually.
+     */
+    menuItemIndex?: number[];
+    /**
+     * Controls whether the menu item is disabled.
+     */
+    menuItemDisabled?: boolean;
+    /**
+     * This is auto-generated. You do not need to set it manually.
+     */
+    menuItemSelectable?: boolean;
 }
-declare const MenuItem: React.FC<MenuItemProps>;
+export declare const MenuItem: FC<MenuItemProps>;
 export default MenuItem;

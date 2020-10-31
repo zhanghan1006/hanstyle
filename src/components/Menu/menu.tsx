@@ -1,68 +1,120 @@
-import React, { FC, HTMLAttributes, createContext, useState } from "react";
+import React, {
+  FC,
+  HTMLAttributes,
+  createContext,
+  useState,
+  Children,
+  FunctionComponentElement,
+  cloneElement,
+} from "react";
 import classNames from "classnames";
-import { MenuItemIndex } from "./menuItem";
+import { MenuItemProps } from "./menuItem";
+import { SubmenuProps } from "./submenu";
 
 type MenuStyle = "plain" | "border-top" | "border-bottom"; // "sliding"
 type MenuThemeColor = "orange" | "blue" | "red";
-type HandleMenuItemClick = (clickedIndex: MenuItemIndex) => void;
+type ChangeSelectedIndex = (clickedIndex: number[]) => void;
 
-export interface MenuProps extends HTMLAttributes<HTMLElement> {
+export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * The initial selected index of the menu when it is mounted.
+   */
+  menuInitIndex?: number[];
+  /**
+   * The style of the menu, its menu item and its submenu.
+   */
   menuStyle?: MenuStyle;
+  /**
+   * The theme color of the menu, its menu item and its submenu.
+   */
   menuThemeColor?: MenuThemeColor;
 }
 
 interface IMenuContext {
   menuStyle: MenuStyle;
   menuThemeColor: MenuThemeColor;
-  curIndex: number;
-  handleMenuItemClick: HandleMenuItemClick;
+  selectedIndex: number[];
+  changeSelectedIndex: ChangeSelectedIndex;
 }
 
 export const MenuContext = createContext<IMenuContext>({
   menuStyle: "plain",
   menuThemeColor: "orange",
-  curIndex: 0,
-  handleMenuItemClick: () => {},
+  selectedIndex: [-1],
+  changeSelectedIndex: () => {},
 });
 
+/**
+ * A group of title that can be selected.
+ * It will usually change the content of the page.
+ *
+ * ## How to Import
+ * ~~~js
+ * import { Menu } from "hanstyle";
+ * ~~~
+ * ## Props
+ * - All the props listed in the props table.
+ * - All attributes of the HTML &lt;div&gt; element.
+ * @param props
+ * @constructor
+ */
 export const Menu: FC<MenuProps> = (props) => {
   const {
     className,
     children,
+    menuInitIndex,
     menuStyle,
     menuThemeColor,
     ...restProps
   } = props;
-  const [curIndex, setCurIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(menuInitIndex);
   const classes = classNames(className, "menu", {
     [`menu-${menuStyle}`]: menuStyle,
     [`menu-${menuThemeColor}`]: menuThemeColor,
   });
-  const handleMenuItemClick = (clickedIndex: number) => {
-    setCurIndex(clickedIndex);
+  const changeSelectedIndex = (changeToIndex: number[]) => {
+    setSelectedIndex(changeToIndex);
+  };
+  const renderChildren = () => {
+    return Children.map(children, (child, index) => {
+      const childElement = child as FunctionComponentElement<
+        MenuItemProps | SubmenuProps
+      >;
+      const { displayName } = childElement.type;
+      if (displayName === "MenuItem" || displayName === "Submenu") {
+        return cloneElement(childElement, { menuItemIndex: [index] });
+      } else {
+        console.error(
+          "Warning: Menu has a child which is not a MenuItem or Submenu"
+        );
+      }
+    });
   };
   return (
-    <ul className={classes} {...restProps}>
+    <div className={classes} {...restProps}>
       <MenuContext.Provider
         value={
           {
             menuStyle: menuStyle,
             menuThemeColor: menuThemeColor,
-            curIndex: curIndex,
-            handleMenuItemClick: handleMenuItemClick,
+            selectedIndex: selectedIndex,
+            changeSelectedIndex: changeSelectedIndex,
           } as IMenuContext
         }
       >
-        {children}
+        {renderChildren()}
       </MenuContext.Provider>
-    </ul>
+    </div>
   );
 };
 
 Menu.defaultProps = {
+  menuInitIndex: [-1],
   menuStyle: "plain",
   menuThemeColor: "orange",
 };
+
+Menu.displayName = "Menu";
 
 export default Menu;
 

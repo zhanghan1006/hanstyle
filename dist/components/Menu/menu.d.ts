@@ -1,29 +1,41 @@
-import React from "react";
-declare type MenuMode = 'horizontal' | 'vertical';
-declare type selectCallback = (selectedIndex: string) => void;
-export interface MenuProps {
-    defaultIndex?: string;
-    className?: string;
-    mode?: MenuMode;
-    style?: React.CSSProperties;
-    onSelect?: selectCallback;
-    defaultOpenSubMenus?: string[];
+import React, { FC, HTMLAttributes } from "react";
+declare type MenuStyle = "plain" | "border-top" | "border-bottom";
+declare type MenuThemeColor = "orange" | "blue" | "red";
+declare type ChangeSelectedIndex = (clickedIndex: number[]) => void;
+export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
+    /**
+     * The initial selected index of the menu when it is mounted.
+     */
+    menuInitIndex?: number[];
+    /**
+     * The style of the menu, its menu item and its submenu.
+     */
+    menuStyle?: MenuStyle;
+    /**
+     * The theme color of the menu, its menu item and its submenu.
+     */
+    menuThemeColor?: MenuThemeColor;
 }
 interface IMenuContext {
-    index: string;
-    onSelect?: selectCallback;
-    mode?: MenuMode;
-    defaultOpenSubMenus?: string[];
+    menuStyle: MenuStyle;
+    menuThemeColor: MenuThemeColor;
+    selectedIndex: number[];
+    changeSelectedIndex: ChangeSelectedIndex;
 }
 export declare const MenuContext: React.Context<IMenuContext>;
 /**
- * 这是我们的第一个 Menu 组件
- * ## Menu header
+ * A group of title that can be selected.
+ * It will usually change the content of the page.
+ *
+ * ## How to Import
  * ~~~js
- * import { Menu } from 'hanstyle'
+ * import { Menu } from "hanstyle";
  * ~~~
+ * ## Props
+ * - All the props listed in the props table.
+ * - All attributes of the HTML &lt;div&gt; element.
  * @param props
  * @constructor
  */
-export declare const Menu: React.FC<MenuProps>;
+export declare const Menu: FC<MenuProps>;
 export default Menu;

@@ -40,7 +40,6 @@
     background: $active-background;
     border-color: $active-border;
   }
-  &:disabled,
   &.disabled {
     color: $disabled-color;
     background: $disabled-background;
@@ -188,26 +187,36 @@
   }
 }
 
-@mixin zoom-animation(
+@mixin expand-animation(
   $direction: 'top',
   $scaleStart: scaleY(0),
   $scaleEnd: scaleY(1),
   $origin: center top,
 ) {
-  .zoom-in-#{$direction}-enter {
+  .expand-from-#{$direction}-appear {
     opacity: 0;
     transform: $scaleStart;
   }
-  .zoom-in-#{$direction}-enter-active {
+  .expand-from-#{$direction}-appear-active {
     opacity: 1;
     transform: $scaleEnd;
     transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
     transform-origin: $origin;
   }
-  .zoom-in-#{$direction}-exit {
+  .expand-from-#{$direction}-enter {
+    opacity: 0;
+    transform: $scaleStart;
+  }
+  .expand-from-#{$direction}-enter-active {
+    opacity: 1;
+    transform: $scaleEnd;
+    transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+    transform-origin: $origin;
+  }
+  .expand-from-#{$direction}-exit {
     opacity: 1;
   }
-  .zoom-in-#{$direction}-exit-active {
+  .expand-from-#{$direction}-exit-active {
     opacity: 0;
     transform: $scaleStart;
     transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;

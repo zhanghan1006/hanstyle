@@ -1,0 +1,204 @@
+.list {
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+  list-style-type: none;
+  background-color: $white;
+  padding: 0;
+
+  .list-item {
+    display: block;
+    transition: background-color .1s ease-in-out 0s, color .1s ease-in-out 0s;
+    padding: .5rem 1rem .5rem 1rem;
+    margin: 0;
+  }
+
+  @each $key, $val in $base-and-neutral-colors {
+    &.list-theme-color-#{$key} {
+      &.list-interaction-style-lighten {
+        &.list-interaction-hoverable {
+          .list-item {
+            color: $black;
+            &:hover {
+              color: $val;
+            }
+            &.disabled {
+              cursor: not-allowed;
+              background-color: $white;
+              color: $gray-11;
+            }
+          }
+        }
+        &.list-interaction-clickable {
+          .list-item {
+            cursor: pointer;
+            color: $black;
+            &:hover {
+              color: $val;
+            }
+            &:active {
+              color: darken($val, 20%);
+            }
+            &.disabled {
+              cursor: not-allowed;
+              background-color: $white;
+              color: $gray-11;
+            }
+          }
+        }
+        &.list-interaction-selectable {
+          .list-item {
+            cursor: pointer;
+            color: $black;
+            &:hover {
+              color: $val;
+            }
+            &:active {
+              color: darken($val, 20%);
+            }
+            &.selected {
+              color: $val;
+            }
+            &.disabled {
+              cursor: not-allowed;
+              background-color: $white;
+              color: $gray-11;
+            }
+          }
+        }
+      }
+      &.list-interaction-style-shadow {
+        &.list-interaction-hoverable {
+          .list-item {
+            background-color: $white;
+            &:hover {
+              background-color: $val;
+            }
+            &.disabled {
+              cursor: not-allowed;
+              background-color: $white;
+              color: $gray-11;
+            }
+          }
+        }
+        &.list-interaction-clickable {
+          .list-item {
+            cursor: pointer;
+            background-color: $white;
+            &:hover {
+              background-color: lighten($val, 20%);
+            }
+            &:active {
+              background-color: darken($val, 20%);
+            }
+            &.disabled {
+              cursor: not-allowed;
+              background-color: $white;
+              color: $gray-11;
+            }
+          }
+        }
+        &.list-interaction-selectable {
+          .list-item {
+            cursor: pointer;
+            background-color: $white;
+            &:hover {
+              background-color: lighten($val, 20%);
+            }
+            &:active {
+              background-color: darken($val, 20%);
+            }
+            &.selected {
+              background-color: $val;
+            }
+            &.disabled {
+              cursor: not-allowed;
+              background-color: $white;
+              color: $gray-11;
+            }
+          }
+        }
+      }
+      &.list-interaction-style-lighten-shadow {
+        &.list-interaction-hoverable {
+          .list-item {
+            background-color: $white;
+            color: $black;
+            &:hover {
+              background-color: $val;
+              color: $val;
+            }
+            &.disabled {
+              cursor: not-allowed;
+              background-color: $white;
+              color: $gray-11;
+            }
+          }
+        }
+        &.list-interaction-clickable {
+          .list-item {
+            cursor: pointer;
+            background-color: $white;
+            color: $black;
+            &:hover {
+              color: $val;
+            }
+            &:active {
+              background-color: darken($val, 20%);
+              color: $val;
+            }
+            &.disabled {
+              cursor: not-allowed;
+              background-color: $white;
+              color: $gray-11;
+            }
+          }
+        }
+        &.list-interaction-selectable {
+          .list-item {
+            cursor: pointer;
+            background-color: $white;
+            color: $black;
+            &:hover {
+              color: $val;
+            }
+            &:active {
+              background-color: darken($val, 20%);
+              color: $val;
+            }
+            &.selected {
+              background-color: $val;
+              color: $val;
+            }
+            &.disabled {
+              cursor: not-allowed;
+              background-color: $white;
+              color: $gray-11;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // border radius size
+  @each $key, $val in $list-border-radius-sizes {
+    &.list-border-radius-#{$key} {
+      border-radius: $val;
+    }
+  }
+
+  // border color
+  @each $key, $val in $base-and-neutral-colors {
+    &.list-border-color-#{$key} {
+      border: 1px solid $val;
+    }
+  }
+
+  // shadow size
+  @each $key, $val in $list-shadow-sizes {
+    &.list-shadow-#{$key} {
+      box-shadow: $val;
+    }
+  }
+}

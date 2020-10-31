@@ -1,3 +1,3 @@
-import React from 'react';
+import React from "react";
 declare const App: React.FC;
 export default App;

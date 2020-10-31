@@ -1,0 +1,21 @@
+.banner {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  .image {
+    transition: {
+      property: top, right, bottom, left;
+      duration: .5s;
+      timing-function: ease-in-out;
+      delay: 0s;
+    };
+  }
+  .button {
+    transition: {
+      property: top, right, bottom, left;
+      duration: .2s;
+      timing-function: ease-in-out;
+      delay: 0s;
+    };
+  }
+}

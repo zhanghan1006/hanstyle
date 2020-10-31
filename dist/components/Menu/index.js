@@ -1,7 +1,7 @@
 import Menu from "./menu";
-import SubMenu from "./subMenu";
+import SubMenu from "./submenu";
 import MenuItem from "./menuItem";
-var TransMenu = Menu;
-TransMenu.Item = MenuItem;
-TransMenu.SubMenu = SubMenu;
-export default TransMenu;
+var MenuComponent = Menu;
+MenuComponent.Item = MenuItem;
+MenuComponent.Submenu = SubMenu;
+export default MenuComponent;

@@ -20,110 +20,240 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useState, useEffect, useRef } from 'react';
-import classNames from 'classnames';
-import Input from '../Input/input';
-import Icon from '../Icon/icon';
-import { CSSTransition } from 'react-transition-group';
-import useDebounce from '../../hooks/useDebounce';
-import useClickOutside from '../../hooks/useClickOutside';
+import React, { Children, useEffect, useRef, useState, } from "react";
+import classNames from "classnames";
+import Input from "../Input/input";
+import InputContent from "../Input/inputContent";
+import List from "../List/list";
+import { CSSTransition } from "react-transition-group";
+/**
+ * Show relative information based on the current input value.
+ *
+ * Usually used for search box.
+ *
+ * ## How to Import
+ * ~~~js
+ * import { AutoComplete } from "hanstyle";
+ * ~~~
+ * ## Props
+ * - All the props listed in the props table.
+ * - All attributes of the HTML &lt;div&gt; element.
+ * @param props
+ * @constructor
+ */
 export var AutoComplete = function (props) {
-    var fetchSuggestions = props.fetchSuggestions, onSelect = props.onSelect, value = props.value, renderOption = props.renderOption, restProps = __rest(props, ["fetchSuggestions", "onSelect", "value", "renderOption"]);
-    var _a = useState(value), inputValue = _a[0], setInputValue = _a[1];
-    var _b = useState([]), suggestions = _b[0], setSugestions = _b[1];
-    var _c = useState(false), loading = _c[0], setLoading = _c[1];
-    var _d = useState(false), showDropdown = _d[0], setShowDropdown = _d[1];
-    var _e = useState(-1), highlightIndex = _e[0], setHighlightIndex = _e[1];
-    var triggerSearch = useRef(false);
-    var componentRef = useRef(null);
-    var debouncedValue = useDebounce(inputValue, 300);
-    useClickOutside(componentRef, function () { setSugestions([]); });
-    useEffect(function () {
-        if (debouncedValue && triggerSearch.current) {
-            setSugestions([]);
-            var results = fetchSuggestions(debouncedValue);
-            if (results instanceof Promise) {
-                setLoading(true);
-                results.then(function (data) {
-                    setLoading(false);
-                    setSugestions(data);
-                    if (data.length > 0) {
-                        setShowDropdown(true);
-                    }
-                });
-            }
-            else {
-                setSugestions(results);
-                setShowDropdown(true);
-                if (results.length > 0) {
-                    setShowDropdown(true);
-                }
-            }
+    var className = props.className, children = props.children, autoCompleteInitValue = props.autoCompleteInitValue, autoCompleteListWidth = props.autoCompleteListWidth, autoCompleteListHeight = props.autoCompleteListHeight, restProps = __rest(props, ["className", "children", "autoCompleteInitValue", "autoCompleteListWidth", "autoCompleteListHeight"]);
+    var classes = classNames(className, "auto-complete", {});
+    var _a = useState(false), isOpen = _a[0], setIsOpen = _a[1];
+    var inputContentRef = useRef(null);
+    var inputHeight = useRef(0);
+    var autoCompleteDivRef = useRef(null);
+    var handleChange = function (event) {
+        if (event.target.value === "") {
+            setIsOpen(false);
         }
         else {
-            setShowDropdown(false);
-        }
-        setHighlightIndex(-1);
-    }, [debouncedValue, fetchSuggestions]);
-    var highlight = function (index) {
-        if (index < 0)
-            index = 0;
-        if (index >= suggestions.length) {
-            index = suggestions.length - 1;
-        }
-        setHighlightIndex(index);
-    };
-    var handleKeyDown = function (e) {
-        switch (e.keyCode) {
-            case 13:
-                if (suggestions[highlightIndex]) {
-                    handleSelect(suggestions[highlightIndex]);
-                }
-                break;
-            case 38:
-                highlight(highlightIndex - 1);
-                break;
-            case 40:
-                highlight(highlightIndex + 1);
-                break;
-            case 27:
-                setShowDropdown(false);
-                break;
-            default:
-                break;
+            setIsOpen(true);
         }
     };
-    var handleChange = function (e) {
-        var value = e.target.value.trim();
-        setInputValue(value);
-        triggerSearch.current = true;
+    var handleFocus = function () {
+        setIsOpen(true);
     };
-    var handleSelect = function (item) {
-        setInputValue(item.value);
-        setShowDropdown(false);
-        if (onSelect) {
-            onSelect(item);
+    var handleClickOutside = function (e) {
+        if (isOpen && !autoCompleteDivRef.current.contains(e.target)) {
+            setIsOpen(false);
         }
-        triggerSearch.current = false;
     };
-    var renderTemplate = function (item) {
-        return renderOption ? renderOption(item) : item.value;
+    var generateInlineStyle = function () {
+        var inlineStyle;
+        inlineStyle = {
+            position: "absolute",
+            top: inputHeight.current + 5 + "px",
+            left: 0,
+        };
+        inlineStyle.width = autoCompleteListWidth + "px";
+        inlineStyle.height = autoCompleteListHeight + "px";
+        return inlineStyle;
     };
-    var generateDropdown = function () {
-        return (React.createElement(CSSTransition, { in: showDropdown || loading, classNames: "zoom-in-top", timeout: 300, onExited: function () { setSugestions([]); } },
-            React.createElement("ul", { className: "viking-suggestion-list" },
-                loading &&
-                    React.createElement("div", { className: "suggstions-loading-icon" },
-                        React.createElement(Icon, { icon: "spinner", spin: true })),
-                suggestions.map(function (item, index) {
-                    var cnames = classNames('suggestion-item', {
-                        'is-active': index === highlightIndex
-                    });
-                    return (React.createElement("li", { key: index, className: cnames, onClick: function () { return handleSelect(item); } }, renderTemplate(item)));
-                }))));
+    var listInlineStyle = generateInlineStyle();
+    var renderChildren = function () {
+        return Children.map(children, function (child) {
+            var childElement = child;
+            var displayName = childElement.type.displayName;
+            if (displayName === "ListItem") {
+                return childElement;
+            }
+            else {
+                console.error("Warning: AutoComplete has a child which is not a ListItem");
+            }
+        });
     };
-    return (React.createElement("div", { className: "viking-auto-complete", ref: componentRef },
-        React.createElement(Input, __assign({ value: inputValue, onChange: handleChange, onKeyDown: handleKeyDown }, restProps)),
-        generateDropdown()));
+    useEffect(function () {
+        var inputContentInputRef = inputContentRef.current.getInputContentInputRef();
+        inputHeight.current = inputContentInputRef.current.offsetHeight;
+    });
+    useEffect(function () {
+        window.addEventListener("click", handleClickOutside);
+        return function () {
+            window.removeEventListener("click", handleClickOutside);
+        };
+    });
+    return (React.createElement("div", __assign({ ref: autoCompleteDivRef, className: classes }, restProps),
+        React.createElement(Input, null,
+            React.createElement(InputContent, { ref: inputContentRef, inputContentInitValue: autoCompleteInitValue, inputContentOnChangeAfter: handleChange, onFocus: handleFocus })),
+        React.createElement(CSSTransition, { in: isOpen, timeout: 300, classNames: "expand-from-top", appear: true, unmountOnExit: true },
+            React.createElement(List, { style: listInlineStyle, className: classes, listBorderRadiusSize: "small", listBorderColor: "none", listDividerColor: "none", listShadowSize: "middle", listThemeColor: "orange", listInteractionLevel: "clickable", listInteractionStyle: "lighten-shadow" }, renderChildren()))));
 };
+AutoComplete.defaultProps = {
+    autoCompleteInitValue: "",
+    autoCompleteListWidth: 400,
+    autoCompleteListHeight: 200,
+};
+AutoComplete.displayName = "AutoComplete";
 export default AutoComplete;
+// import React, { FC, useState, ChangeEvent, KeyboardEvent, ReactElement, useEffect, useRef } from 'react'
+// import classNames from 'classnames'
+// import Input, { InputProps } from '../Input/input'
+// import Icon from '../Icon/icon'
+// import { CSSTransition } from 'react-transition-group'
+// import useDebounce from '../../hooks/useDebounce'
+// import useClickOutside from '../../hooks/useClickOutside'
+// interface DataSourceObject {
+//   value: string;
+// }
+// export type DataSourceType<T = {}> = T & DataSourceObject
+// export interface AutoCompleteProps extends Omit<InputProps, 'onSelect'> {
+//   fetchSuggestions: (str: string) => DataSourceType[] | Promise<DataSourceType[]>;
+//   onSelect?: (item: DataSourceType) => void;
+//   renderOption?: (item: DataSourceType) => ReactElement;
+// }
+//
+// export const AutoComplete: FC<AutoCompleteProps> = (props) => {
+//   const {
+//     fetchSuggestions,
+//     onSelect,
+//     value,
+//     renderOption,
+//     ...restProps
+//   } = props
+//
+//   const [ inputValue, setInputValue ] = useState(value as string)
+//   const [ suggestions, setSugestions ] = useState<DataSourceType[]>([])
+//   const [ loading, setLoading ] = useState(false)
+//   const [ showDropdown, setShowDropdown] = useState(false)
+//   const [ highlightIndex, setHighlightIndex] = useState(-1)
+//   const triggerSearch = useRef(false)
+//   const componentRef = useRef<HTMLDivElement>(null)
+//   const debouncedValue = useDebounce(inputValue, 300)
+//   useClickOutside(componentRef, () => { setSugestions([])})
+//   useEffect(() => {
+//     if (debouncedValue && triggerSearch.current) {
+//       setSugestions([])
+//       const results = fetchSuggestions(debouncedValue)
+//       if (results instanceof Promise) {
+//         setLoading(true)
+//         results.then(data => {
+//           setLoading(false)
+//           setSugestions(data)
+//           if (data.length > 0) {
+//             setShowDropdown(true)
+//           }
+//         })
+//       } else {
+//         setSugestions(results)
+//         setShowDropdown(true)
+//         if (results.length > 0) {
+//           setShowDropdown(true)
+//         }
+//       }
+//     } else {
+//       setShowDropdown(false)
+//     }
+//     setHighlightIndex(-1)
+//   }, [debouncedValue, fetchSuggestions])
+//   const highlight = (index: number) => {
+//     if (index < 0) index = 0
+//     if (index >= suggestions.length) {
+//       index = suggestions.length - 1
+//     }
+//     setHighlightIndex(index)
+//   }
+//   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+//     switch(e.keyCode) {
+//       case 13:
+//         if (suggestions[highlightIndex]) {
+//           handleSelect(suggestions[highlightIndex])
+//         }
+//         break
+//       case 38:
+//         highlight(highlightIndex - 1)
+//         break
+//       case 40:
+//         highlight(highlightIndex + 1)
+//         break
+//       case 27:
+//         setShowDropdown(false)
+//         break
+//       default:
+//         break
+//     }
+//   }
+//   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+//     const value = e.target.value.trim()
+//     setInputValue(value)
+//     triggerSearch.current = true
+//   }
+//   const handleSelect = (item: DataSourceType) => {
+//     setInputValue(item.value)
+//     setShowDropdown(false)
+//     if (onSelect) {
+//       onSelect(item)
+//     }
+//     triggerSearch.current = false
+//   }
+//   const renderTemplate = (item: DataSourceType) => {
+//     return renderOption ? renderOption(item) : item.value
+//   }
+//   const generateDropdown = () => {
+//     return (
+//       <CSSTransition
+//         in={showDropdown || loading}
+//         classNames="zoom-in-top"
+//         timeout={300}
+//         onExited={() => {setSugestions([])}}
+//       >
+//         <ul className="viking-suggestion-list">
+//           { loading &&
+//             <div className="suggstions-loading-icon">
+//               <Icon icon="spinner" spin/>
+//             </div>
+//           }
+//           {suggestions.map((item, index) => {
+//             const cnames = classNames('suggestion-item', {
+//               'is-active': index === highlightIndex
+//             })
+//             return (
+//               <li key={index} className={cnames} onClick={() => handleSelect(item)}>
+//                 {renderTemplate(item)}
+//               </li>
+//             )
+//           })}
+//         </ul>
+//       </CSSTransition>
+//     )
+//   }
+//   return (
+//     <div className="viking-auto-complete" ref={componentRef}>
+//       <Input
+//         value={inputValue}
+//         onChange={handleChange}
+//         onKeyDown={handleKeyDown}
+//         {...restProps}
+//       />
+//       {generateDropdown()}
+//     </div>
+//   )
+// }
+//
+// export default AutoComplete;
+//

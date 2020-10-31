@@ -62,7 +62,7 @@ hr {
   color: $hr-color; // 1
   background-color: currentColor;
   border: 0;
-  opacity: $hr-opacity;
+  //opacity: $hr-opacity;
 }
 
 hr:not([size]) {

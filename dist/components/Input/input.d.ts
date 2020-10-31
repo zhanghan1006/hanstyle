@@ -1,27 +1,47 @@
-import { FC, ReactElement, InputHTMLAttributes, ChangeEvent } from 'react';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-declare type InputSize = 'lg' | 'sm';
-export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size'> {
-    /**是否禁用 Input */
-    disabled?: boolean;
-    /**设置 input 大小，支持 lg 或者是 sm */
-    size?: InputSize;
-    /**添加图标，在右侧悬浮添加一个图标，用于提示 */
-    icon?: IconProp;
-    /**添加前缀 用于配置一些固定组合 */
-    prepend?: string | ReactElement;
-    /**添加后缀 用于配置一些固定组合 */
-    append?: string | ReactElement;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+import React, { FC, HTMLAttributes } from "react";
+import { BaseColor, BaseSize, NeutralColor } from "../variables";
+declare type InputStyle = "luminous";
+export interface InputProps extends HTMLAttributes<HTMLDivElement> {
+    /**
+     * How large is the Input component?
+     */
+    inputSize?: BaseSize;
+    /**
+     * What is the theme color of the Input component?
+     */
+    inputThemeColor?: BaseColor | NeutralColor;
+    /**
+     * What is the style of the Input component, especially when you interact with it?
+     */
+    inputStyle?: InputStyle;
 }
+interface IInputContext {
+    inputSize: BaseSize;
+    inputThemeColor: BaseColor | NeutralColor;
+    inputStyle: InputStyle;
+}
+export declare const InputContext: React.Context<IInputContext>;
 /**
- * Input 输入框 通过鼠标或键盘输入内容，是最基础的表单域的包装。
+ * It allows user to input some text to give information to the application.
  *
+ * ## How to Import
  * ~~~js
- * // 这样引用
- * import { Input } from 'vikingship'
+ * import { Input } from "hanstyle";
  * ~~~
- * 支持 HTMLInput 的所有基本属性
+ * ## Props
+ * ### Input
+ * - All the props listed in the props table.
+ * - All attributes of the HTML &lt;div&gt; element.
+ *
+ * ### InputContent
+ * - All the props listed in the props table.
+ * - All attributes of the HTML &lt;input&gt; element, except 'size'.
+ *
+ * ### InputAffix
+ * - All the props listed in the props table.
+ * - All attributes of the HTML &lt;div&gt; element.
+ * @param props
+ * @constructor
  */
 export declare const Input: FC<InputProps>;
 export default Input;
