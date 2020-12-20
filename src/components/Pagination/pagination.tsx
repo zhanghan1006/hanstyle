@@ -1,10 +1,10 @@
 import React, { FC, OlHTMLAttributes, useState } from "react";
 import classNames from "classnames";
 import Icon from "../Icon/icon";
-import { BaseColor, NeutralColor } from "../variables";
+import { BaseColor } from "../variables";
 
 type PaginationStyle = "dot"; // "line"
-type PaginationThemeColor = BaseColor | NeutralColor;
+type PaginationThemeColor = BaseColor;
 
 export interface PaginationProps extends OlHTMLAttributes<HTMLOListElement> {
   /**
@@ -120,7 +120,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
 Pagination.defaultProps = {
   initIndex: 1,
   paginationStyle: "dot",
-  paginationThemeColor: "gray-0",
+  paginationThemeColor: "gray",
 };
 
 export default Pagination;

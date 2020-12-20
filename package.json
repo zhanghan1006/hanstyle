@@ -1,7 +1,7 @@
 {
   "name": "hanstyle",
   "version": "1.0.0",
-  "description": "React Components Library",
+  "description": "React Component Library",
   "author": "Zhang Han",
   "private": false,
   "main": "dist/index.js",
@@ -49,9 +49,9 @@
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
     "prepublishOnly": "npm run test:nowatch && npm run lint && npm run build",
-    "storybook": "start-storybook -p 6006 --no-dll",
+    "storybook": "start-storybook -p 6006 --no-manager-cache",
     "clean-storybook": "rimraf ./storybook-static",
-    "build-storybook": "npm run clean-storybook && build-storybook --no-dll"
+    "build-storybook": "npm run clean-storybook && build-storybook"
   },
   "husky": {
     "hooks": {
@@ -79,11 +79,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
-    "@storybook/addon-actions": "^6.0.27",
-    "@storybook/addon-essentials": "^6.0.27",
-    "@storybook/addon-links": "^6.0.27",
-    "@storybook/preset-create-react-app": "^3.1.4",
-    "@storybook/react": "^6.0.27",
+    "@storybook/addon-actions": "^6.1.2",
+    "@storybook/addon-essentials": "^6.1.2",
+    "@storybook/addon-links": "^6.1.2",
+    "@storybook/addons": "^6.1.2",
+    "@storybook/core-events": "^6.1.2",
+    "@storybook/preset-create-react-app": "^3.1.5",
+    "@storybook/react": "^6.1.2",
+    "@storybook/theming": "^6.1.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",

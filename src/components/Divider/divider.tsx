@@ -1,10 +1,10 @@
 import React, { FC, HTMLAttributes } from "react";
 import classNames from "classnames";
-import { BaseColor, NeutralColor } from "../variables";
+import { BaseColor } from "../variables";
 
 type DividerStyle = "empty" | "plain";
 type DividerTextPosition = "left" | "center" | "right";
-type DividerLineColor = BaseColor | NeutralColor;
+type DividerLineColor = BaseColor;
 
 export interface DividerProps extends HTMLAttributes<HTMLElement> {
   dividerStyle?: DividerStyle;
@@ -60,7 +60,7 @@ export const Divider: FC<DividerProps> = (props) => {
 Divider.defaultProps = {
   dividerStyle: "empty",
   dividerTextPosition: "left",
-  dividerLineColor: "gray-0",
+  dividerLineColor: "gray",
 };
 
 export default Divider;

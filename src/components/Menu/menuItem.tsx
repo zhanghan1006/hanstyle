@@ -26,12 +26,7 @@ export const MenuItem: FC<MenuItemProps> = (props) => {
     menuItemSelectable,
     ...restProps
   } = props;
-  const {
-    menuStyle,
-    menuThemeColor,
-    selectedIndex,
-    changeSelectedIndex,
-  } = useContext(MenuContext);
+  const { selectedIndex, changeSelectedIndex } = useContext(MenuContext);
   const isChildrenSelected = () => {
     if (selectedIndex.length > menuItemIndex!.length) {
       let result = true;
@@ -46,12 +41,10 @@ export const MenuItem: FC<MenuItemProps> = (props) => {
     return false;
   };
   const classes = classNames(className, "menu-item", {
-    [`menu-item-${menuStyle}`]: menuStyle,
-    [`menu-item-${menuThemeColor}`]: menuThemeColor,
-    "menu-item-selected":
+    selected:
       selectedIndex.toString() === menuItemIndex!.toString() ||
       isChildrenSelected(),
-    "menu-item-disabled": menuItemDisabled,
+    disabled: menuItemDisabled,
   });
   const handleClick = () => {
     if (menuItemSelectable && selectedIndex !== menuItemIndex) {

@@ -83,7 +83,7 @@
   }
 
   // color
-  @each $key, $val in $base-and-neutral-colors {
+  @each $key, $val in $base-colors-l1 {
     &.input-theme-color-#{$key} {
       .input-content:hover {
         border-color: $val;

@@ -12,9 +12,9 @@ import * as CSS from "csstype";
 import Icon from "../Icon/icon";
 import Button from "../Button/button";
 import Pagination from "../Pagination/pagination";
-import { BaseColor, NeutralColor } from "../variables";
+import { BaseColor } from "../variables";
 
-type BannerThemeColor = BaseColor | NeutralColor;
+type BannerThemeColor = BaseColor;
 
 export interface BannerProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -209,7 +209,7 @@ export const Banner: FC<BannerProps> = (props) => {
               ? bannerThemeColor
               : isHoverOnLeftButton
               ? bannerThemeColor
-              : "gray-0"
+              : "gray"
           }
         />
       </Button>
@@ -232,7 +232,7 @@ export const Banner: FC<BannerProps> = (props) => {
               ? bannerThemeColor
               : isHoverOnRightButton
               ? bannerThemeColor
-              : "gray-0"
+              : "gray"
           }
         />
       </Button>
@@ -253,7 +253,7 @@ Banner.defaultProps = {
   autoPlayInterval: 3000,
   pauseOnHover: true,
   hideButton: true,
-  bannerThemeColor: "orange",
+  bannerThemeColor: "blue",
 };
 
 export default Banner;

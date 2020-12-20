@@ -10,9 +10,10 @@ import React, {
 import classNames from "classnames";
 import { MenuItemProps } from "./menuItem";
 import { SubmenuProps } from "./submenu";
+import { BaseColor } from "../variables";
 
 type MenuStyle = "plain" | "border-top" | "border-bottom"; // "sliding"
-type MenuThemeColor = "orange" | "blue" | "red";
+type MenuThemeColor = BaseColor;
 type ChangeSelectedIndex = (clickedIndex: number[]) => void;
 
 export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
@@ -31,15 +32,11 @@ export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 interface IMenuContext {
-  menuStyle: MenuStyle;
-  menuThemeColor: MenuThemeColor;
   selectedIndex: number[];
   changeSelectedIndex: ChangeSelectedIndex;
 }
 
 export const MenuContext = createContext<IMenuContext>({
-  menuStyle: "plain",
-  menuThemeColor: "orange",
   selectedIndex: [-1],
   changeSelectedIndex: () => {},
 });
@@ -95,8 +92,6 @@ export const Menu: FC<MenuProps> = (props) => {
       <MenuContext.Provider
         value={
           {
-            menuStyle: menuStyle,
-            menuThemeColor: menuThemeColor,
             selectedIndex: selectedIndex,
             changeSelectedIndex: changeSelectedIndex,
           } as IMenuContext
@@ -111,7 +106,7 @@ export const Menu: FC<MenuProps> = (props) => {
 Menu.defaultProps = {
   menuInitIndex: [-1],
   menuStyle: "plain",
-  menuThemeColor: "orange",
+  menuThemeColor: "blue",
 };
 
 Menu.displayName = "Menu";

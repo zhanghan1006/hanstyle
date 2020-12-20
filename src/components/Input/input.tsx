@@ -7,7 +7,7 @@ import React, {
   HTMLAttributes,
 } from "react";
 import classNames from "classnames";
-import { BaseColor, BaseSize, NeutralColor } from "../variables";
+import { BaseColor, BaseSize } from "../variables";
 import { InputContentProps } from "./inputContent";
 import { InputAffixProps } from "./inputAffix";
 
@@ -21,7 +21,7 @@ export interface InputProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * What is the theme color of the Input component?
    */
-  inputThemeColor?: BaseColor | NeutralColor;
+  inputThemeColor?: BaseColor;
   /**
    * What is the style of the Input component, especially when you interact with it?
    */
@@ -30,7 +30,7 @@ export interface InputProps extends HTMLAttributes<HTMLDivElement> {
 
 interface IInputContext {
   inputSize: BaseSize;
-  inputThemeColor: BaseColor | NeutralColor;
+  inputThemeColor: BaseColor;
   inputStyle: InputStyle;
 }
 
@@ -147,7 +147,7 @@ export const Input: FC<InputProps> = (props) => {
 
 Input.defaultProps = {
   inputSize: "middle",
-  inputThemeColor: "orange",
+  inputThemeColor: "blue",
   inputStyle: "luminous",
 };
 

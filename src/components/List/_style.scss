@@ -13,167 +13,272 @@
     margin: 0;
   }
 
-  @each $key, $val in $base-and-neutral-colors {
-    &.list-theme-color-#{$key} {
-      &.list-interaction-style-lighten {
-        &.list-interaction-hoverable {
-          .list-item {
-            color: $black;
-            &:hover {
-              color: $val;
-            }
-            &.disabled {
-              cursor: not-allowed;
-              background-color: $white;
-              color: $gray-11;
-            }
-          }
+  &.list-interaction-style-lighten {
+    &.list-interaction-hoverable {
+      .list-item {
+        color: $black;
+        &.disabled {
+          cursor: not-allowed !important;
+          background-color: $white !important;
+          color: $gray-11 !important;
         }
-        &.list-interaction-clickable {
+      }
+      @each $key, $val in $base-colors {
+        &.list-theme-color-#{$key} {
           .list-item {
-            cursor: pointer;
-            color: $black;
             &:hover {
               color: $val;
-            }
-            &:active {
-              color: darken($val, 20%);
-            }
-            &.disabled {
-              cursor: not-allowed;
-              background-color: $white;
-              color: $gray-11;
-            }
-          }
-        }
-        &.list-interaction-selectable {
-          .list-item {
-            cursor: pointer;
-            color: $black;
-            &:hover {
-              color: $val;
-            }
-            &:active {
-              color: darken($val, 20%);
-            }
-            &.selected {
-              color: $val;
-            }
-            &.disabled {
-              cursor: not-allowed;
-              background-color: $white;
-              color: $gray-11;
             }
           }
         }
       }
-      &.list-interaction-style-shadow {
-        &.list-interaction-hoverable {
-          .list-item {
-            background-color: $white;
-            &:hover {
-              background-color: $val;
-            }
-            &.disabled {
-              cursor: not-allowed;
-              background-color: $white;
-              color: $gray-11;
-            }
-          }
+    }
+    &.list-interaction-clickable {
+      .list-item {
+        cursor: pointer;
+        color: $black;
+        &.disabled {
+          cursor: not-allowed !important;
+          background-color: $white !important;
+          color: $gray-11 !important;
         }
-        &.list-interaction-clickable {
+      }
+      @each $key, $val in $base-colors {
+        &.list-theme-color-#{$key} {
           .list-item {
-            cursor: pointer;
-            background-color: $white;
             &:hover {
-              background-color: lighten($val, 20%);
-            }
-            &:active {
-              background-color: darken($val, 20%);
-            }
-            &.disabled {
-              cursor: not-allowed;
-              background-color: $white;
-              color: $gray-11;
-            }
-          }
-        }
-        &.list-interaction-selectable {
-          .list-item {
-            cursor: pointer;
-            background-color: $white;
-            &:hover {
-              background-color: lighten($val, 20%);
-            }
-            &:active {
-              background-color: darken($val, 20%);
-            }
-            &.selected {
-              background-color: $val;
-            }
-            &.disabled {
-              cursor: not-allowed;
-              background-color: $white;
-              color: $gray-11;
+              color: $val;
             }
           }
         }
       }
-      &.list-interaction-style-lighten-shadow {
-        &.list-interaction-hoverable {
+      @each $key, $val in $base-colors-d1 {
+        &.list-theme-color-#{$key} {
           .list-item {
-            background-color: $white;
-            color: $black;
-            &:hover {
-              background-color: $val;
+            &:active {
               color: $val;
-            }
-            &.disabled {
-              cursor: not-allowed;
-              background-color: $white;
-              color: $gray-11;
             }
           }
         }
-        &.list-interaction-clickable {
-          .list-item {
-            cursor: pointer;
-            background-color: $white;
-            color: $black;
-            &:hover {
-              color: $val;
-            }
-            &:active {
-              background-color: darken($val, 20%);
-              color: $val;
-            }
-            &.disabled {
-              cursor: not-allowed;
-              background-color: $white;
-              color: $gray-11;
-            }
-          }
+      }
+    }
+    &.list-interaction-selectable {
+      .list-item {
+        cursor: pointer;
+        color: $black;
+        &.disabled {
+          cursor: not-allowed !important;
+          background-color: $white !important;
+          color: $gray-11 !important;
         }
-        &.list-interaction-selectable {
+      }
+      @each $key, $val in $base-colors {
+        &.list-theme-color-#{$key} {
           .list-item {
-            cursor: pointer;
-            background-color: $white;
-            color: $black;
             &:hover {
-              color: $val;
-            }
-            &:active {
-              background-color: darken($val, 20%);
               color: $val;
             }
             &.selected {
-              background-color: $val;
               color: $val;
             }
-            &.disabled {
-              cursor: not-allowed;
-              background-color: $white;
-              color: $gray-11;
+          }
+        }
+      }
+      @each $key, $val in $base-colors-d1 {
+        &.list-theme-color-#{$key} {
+          .list-item {
+            &:active {
+              color: $val;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.list-interaction-style-shadow {
+    &.list-interaction-hoverable {
+      .list-item {
+        background-color: $white;
+        &.disabled {
+          cursor: not-allowed !important;
+          background-color: $white !important;
+          color: $gray-11 !important;
+        }
+      }
+      @each $key, $val in $base-colors-l4 {
+        &.list-theme-color-#{$key} {
+          .list-item {
+            &:hover {
+              background-color: $val;
+            }
+          }
+        }
+      }
+    }
+    &.list-interaction-clickable {
+      .list-item {
+        cursor: pointer;
+        background-color: $white;
+        &.disabled {
+          cursor: not-allowed !important;
+          background-color: $white !important;
+          color: $gray-11 !important;
+        }
+      }
+      @each $key, $val in $base-colors-l4 {
+        &.list-theme-color-#{$key} {
+          .list-item {
+            &:hover {
+              background-color: $val;
+            }
+          }
+        }
+      }
+      @each $key, $val in $base-colors-l2 {
+        &.list-theme-color-#{$key} {
+          .list-item {
+            &:active {
+              background-color: $val;
+            }
+          }
+        }
+      }
+    }
+    &.list-interaction-selectable {
+      .list-item {
+        cursor: pointer;
+        background-color: $white;
+        &.disabled {
+          cursor: not-allowed !important;
+          background-color: $white !important;
+          color: $gray-11 !important;
+        }
+      }
+      @each $key, $val in $base-colors-l4 {
+        &.list-theme-color-#{$key} {
+          .list-item {
+            &:hover {
+              background-color: $val;
+            }
+          }
+        }
+      }
+      @each $key, $val in $base-colors-l2 {
+        &.list-theme-color-#{$key} {
+          .list-item {
+            &:active {
+              background-color: $val;
+            }
+          }
+        }
+      }
+      @each $key, $val in $base-colors-l3 {
+        &.list-theme-color-#{$key} {
+          .list-item {
+            &.selected {
+              background-color: $val;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.list-interaction-style-lighten-shadow {
+    &.list-interaction-hoverable {
+      .list-item {
+        background-color: $white;
+        color: $black;
+        &.disabled {
+          cursor: not-allowed !important;
+          background-color: $white !important;
+          color: $gray-11 !important;
+        }
+      }
+      @each $key, $val in $base-colors {
+        &.list-theme-color-#{$key} {
+          .list-item {
+            &:hover {
+              color: $val;
+            }
+          }
+        }
+      }
+    }
+    &.list-interaction-clickable {
+      .list-item {
+        cursor: pointer;
+        background-color: $white;
+        color: $black;
+        &.disabled {
+          cursor: not-allowed !important;
+          background-color: $white !important;
+          color: $gray-11 !important;
+        }
+      }
+      @each $key, $val in $base-colors {
+        &.list-theme-color-#{$key} {
+          .list-item {
+            &:hover {
+              color: $val;
+            }
+            &:active {
+              color: $val;
+            }
+          }
+        }
+      }
+      @each $key, $val in $base-colors-l3 {
+        &.list-theme-color-#{$key} {
+          .list-item {
+            &:active {
+              background-color: $val;
+            }
+          }
+        }
+      }
+    }
+    &.list-interaction-selectable {
+      .list-item {
+        cursor: pointer;
+        background-color: $white;
+        color: $black;
+        &.disabled {
+          cursor: not-allowed !important;
+          background-color: $white !important;
+          color: $gray-11 !important;
+        }
+      }
+      @each $key, $val in $base-colors {
+        &.list-theme-color-#{$key} {
+          .list-item {
+            &:hover {
+              color: $val;
+            }
+            &:active {
+              color: $val;
+            }
+            &.selected {
+              color: $val;
+            }
+          }
+        }
+      }
+      @each $key, $val in $base-colors-l3 {
+        &.list-theme-color-#{$key} {
+          .list-item {
+            &:active {
+              background-color: $val;
+            }
+          }
+        }
+      }
+      @each $key, $val in $base-colors-l4 {
+        &.list-theme-color-#{$key} {
+          .list-item {
+            &.selected {
+              background-color: $val;
             }
           }
         }
@@ -189,7 +294,7 @@
   }
 
   // border color
-  @each $key, $val in $base-and-neutral-colors {
+  @each $key, $val in $base-colors-l2 {
     &.list-border-color-#{$key} {
       border: 1px solid $val;
     }

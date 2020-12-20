@@ -1,14 +1,18 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import Code from './assets/code-brackets.svg';
-import Colors from './assets/colors.svg';
-import Comments from './assets/comments.svg';
-import Direction from './assets/direction.svg';
-import Flow from './assets/flow.svg';
-import Plugin from './assets/plugin.svg';
-import Repo from './assets/repo.svg';
-import StackAlt from './assets/stackalt.svg';
+import Github from './assets/github - flat.svg';
+import Npm from './assets/npm - flat.svg';
+import ReactLogo from './assets/React - flat.svg';
+import TypeScript from './assets/TypeScript - flat.svg';
+import Logo from './assets/logo-rounded-text.png';
+import Record from './assets/record.png'
 
-<Meta title="Introduction" />
+<Meta title="Introduction"
+      parameters={
+        {
+          viewMode: "docs",
+        }
+      }
+/>
 
 <style>{`
   .subheading {
@@ -26,7 +30,6 @@ import StackAlt from './assets/stackalt.svg';
   .link-list {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
     row-gap: 10px;
   }
 
@@ -61,6 +64,8 @@ import StackAlt from './assets/stackalt.svg';
     border-color: #1EA7FD50;
     transform: translate3d(0, -3px, 0);
     box-shadow: rgba(0, 0, 0, 0.08) 0 3px 10px 0;
+    text-decoration: none;
+    color: #333333;
   }
 
   .link-item:active {
@@ -86,122 +91,186 @@ import StackAlt from './assets/stackalt.svg';
     line-height: 20px;
   }
 
-  .tip {
-    display: inline-block;
-    border-radius: 1em;
-    font-size: 11px;
-    line-height: 12px;
-    font-weight: 700;
-    background: #E7FDD8;
-    color: #66BF3C;
-    padding: 4px 12px;
-    margin-right: 10px;
-    vertical-align: top;
+  .footer {
+    position: relative;
+    height: 220px;
+    margin-top: 100px;
+    margin-bottom: 20px;
   }
 
-  .tip-wrapper {
-    font-size: 13px;
+  .footer .hr1 {
+    color: #E6E6E6;
+  }
+
+  .footer .hr2 {
+    position: absolute;
+    top: 250px;
+    width: 100%;
+    color: #E6E6E6;
+  }
+
+  .acknowledgement {
+    position: absolute;
+    top: 120px;
+    font-size: 14px;
+  }
+
+  .record {
+    position: absolute;
+    top: 285px;
+    margin-bottom: 10px;
+  }
+
+  .record > div {
+    display: inline-block;
+    margin: 0 20px 0 0;
+  }
+
+  .record > div > a {
+    display: inline-block;
+    text-decoration: none;
+    height: 20px;
     line-height: 20px;
-    margin-top: 40px;
-    margin-bottom: 40px;
   }
 
-  .tip-wrapper code {
-    font-size: 12px;
-    display: inline-block;
+  .record > div > a > img {
+    float: left;
   }
 
-  
+  .record > div > a > p {
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin: 0px 0px 0px 5px;
+    color: #B2B2B2;
+  }
+
+  .record > div > a > p:hover {
+    text-decoration: none;
+    color: #989898;
+  }
+
+  .record > a {
+    position: absolute;
+    width: 250px;
+    top: -3px;
+    font-size: .9rem;
+    color: #B2B2B2;
+  }
+
+  .record > a:hover {
+    text-decoration: none;
+    color: #989898;
+  }
+
+  .logo {
+    position: absolute;
+    width: 220px;
+    top: 22px;
+    left: -10px;
+  }
+
+  .made-with {
+    position: absolute;
+    top: 85px;
+    font-size: 14px;
+  }
+
+  a.inline-link {
+    color: #057aff;
+  }
+
 `}</style>
 
-# Welcome to Storybook
+# Welcome to HanStyle
 
-Storybook helps you build UI components in isolation from your app's business logic, data, and context.
-That makes it easy to develop hard-to-reach states. Save these UI states as **stories** to revisit during development, testing, or QA.
+HanStyle is a React component library providing various components that are highly customizable.
+You can directly use the components with different functions and preset styles, which allows you to focus more on the
+logic and functionalities of your application.
 
-Browse example stories now by navigating to them in the sidebar.
-View their code in the `src/storybook-examples` directory to learn how they work.
-We recommend building UIs with a [**component-driven**](https://componentdriven.org) process starting with atomic components and ending with pages.
+We built the component library with TypeScript, which makes it possible for you to enable TypeScript to perform
+static type-checking.
 
-<div className="subheading">Configure</div>
+Run `npm install hanstyle` in your console to install the component library.
 
-<div className="link-list">
-  <a className="link-item" href="https://storybook.js.org/docs/react/api/presets" target="_blank">
-    <img src={Plugin} alt="plugin" />
-    <span>
-      <strong>Presets for popular tools</strong>
-      Easy setup for TypeScript, SCSS and more.
-    </span>
-  </a>
-  <a
-    className="link-item"
-    href="https://storybook.js.org/docs/react/configure/webpack"
-    target="_blank"
-  >
-    <img src={StackAlt} alt="Build" />
-    <span>
-      <strong>Build configuration</strong>
-      How to customize webpack and Babel
-    </span>
-  </a>
-  <a
-    className="link-item"
-    href="https://storybook.js.org/docs/react/configure/styling-and-css"
-    target="_blank"
-  >
-    <img src={Colors} alt="colors" />
-    <span>
-      <strong>Styling</strong>
-      How to load and configure CSS libraries
-    </span>
-  </a>
-  <a
-    className="link-item"
-    href="https://storybook.js.org/docs/react/get-started/setup#configure-storybook-for-your-stack"
-    target="_blank"
-  >
-    <img src={Flow} alt="flow" />
-    <span>
-      <strong>Data</strong>
-      Providers and mocking for data libraries
-    </span>
-  </a>
-</div>
+Read the documentation of the components now by navigating to them in the sidebar.
+
+You can also preview the components by clicking the 'Canvas' tab.
+Further, you may control the props of each component using the 'Controls' tab, or the 'Control' column in the props table,
+and get a preview of the component in real-time.
 
 <div className="subheading">Learn</div>
 
 <div className="link-list">
-  <a className="link-item" href="https://storybook.js.org/docs" target="_blank">
-    <img src={Repo} alt="repo" />
+  <a className="link-item" href="https://reactjs.org/" target="_blank">
+    <img src={ReactLogo} alt="React" />
     <span>
-      <strong>Storybook documentation</strong>
-      Configure, customize, and extend
+      <strong>React</strong>
+      A JavaScript library for building user interfaces
     </span>
   </a>
-  <a className="link-item" href="https://www.learnstorybook.com" target="_blank">
-    <img src={Direction} alt="direction" />
+  <a
+    className="link-item"
+    href="https://www.typescriptlang.org/"
+    target="_blank"
+  >
+    <img src={TypeScript} alt="TypeScript" />
     <span>
-      <strong>In-depth guides</strong>
-      Best practices from leading teams
-    </span>
-  </a>
-  <a className="link-item" href="https://github.com/storybookjs/storybook" target="_blank">
-    <img src={Code} alt="code" />
-    <span>
-      <strong>GitHub project</strong>
-      View the source and add issues
-    </span>
-  </a>
-  <a className="link-item" href="https://discord.gg/UUt2PJb" target="_blank">
-    <img src={Comments} alt="comments" />
-    <span>
-      <strong>Discord chat</strong>
-      Chat with maintainers and the community
+      <strong>TypeScript</strong>
+      Get static type-checking and catch errors at compile-time
     </span>
   </a>
 </div>
 
-<div className="tip-wrapper">
-  <span className="tip">Tip</span>Edit the Markdown in{' '}
-  <code>src/storybook-examples/welcome.mdx</code>
+<div className="subheading">More Information</div>
+
+<div className="link-list">
+  <a className="link-item" href="https://github.com/zhanghan1006/hanstyle" target="_blank">
+    <img src={Github} alt="GitHub" />
+    <span>
+      <strong>GitHub</strong>
+      View the source and add issues
+    </span>
+  </a>
+  <a className="link-item" href="https://www.npmjs.com/package/hanstyle" target="_blank">
+    <img src={Npm} alt="npm" />
+    <span>
+      <strong>npm</strong>
+      Get information about our releases
+    </span>
+  </a>
+</div>
+
+<div className="footer">
+  <hr className="hr1"/>
+  <div className="logo">
+    <img src={Logo} alt="Logo" />
+  </div>
+  <p className="made-with">
+    Made with love by&nbsp;
+    <a className="inline-link" href="https://github.com/zhanghan1006" target="_blank">
+      @ZhangHan
+    </a>
+    &nbsp;in Beijing, China, 2020
+  </p>
+  <p className="acknowledgement">
+    Logo, relative icons and photos created by&nbsp;
+    <a className="inline-link" href="https://www.figma.com/@sirisk" target="_blank">
+      @SirisK
+    </a>
+  </p>
+  <hr className="hr2"/>
+  <div className="record">
+    <div>
+      <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802033547"
+         target="_blank"
+      >
+        <img src={Record} alt="Logo" />
+        <p>
+          京公网安备11010802033547号
+        </p>
+      </a>
+    </div>
+    <a href="https://beian.miit.gov.cn" target="_blank">京ICP备2020042904号</a>
+  </div>
 </div>

@@ -16,7 +16,9 @@ $gray-13: #dfdfdf !default;
 $gray-14: #efefef !default;
 $gray-15: #ffffff !default;
 
+$black: $gray-0 !default;
 $white: $gray-15 !default;
+
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
@@ -26,75 +28,197 @@ $gray-600: #6c757d !default;
 $gray-700: #495057 !default;
 $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
-$black: $gray-0 !default;
 
 // base color
-$blue: #0d6efd !default;
-$indigo: #6610f2 !default;
-$purple: #6f42c1 !default;
-$pink: #d63384 !default;
-$red: #dc3545 !default;
-$orange: #ee864c !default;
-$yellow: #feae00 !default;
-$green: #52c41a !default;
-$teal: #20c997 !default;
-$cyan: #17a2b8 !default;
+$blue-l4: #e9f3ff !default;
+$blue-l3: #c6e0ff !default;
+$blue-l2: #8bbfff !default;
+$blue-l1: #4a9dff !default;
+$blue: #057aff !default;
+$blue-d1: #035dc6 !default;
+$blue-d2: #013e8a !default;
+$blue-d3: #001e49 !default;
+$blue-d4: #000e2b !default;
+
+$purple-l4: #f5eef5 !default;
+$purple-l3: #e6d2e6 !default;
+$purple-l2: #cca5cc !default;
+$purple-l1: #b073b0 !default;
+$purple: #953e95 !default;
+$purple-d1: #722d72 !default;
+$purple-d2: #4e1d4e !default;
+$purple-d3: #270a27 !default;
+$purple-d4: #150615 !default;
+
+$pink-l4: #ffeff6 !default;
+$pink-l3: #fdd6e7 !default;
+$pink-l2: #fbacd0 !default;
+$pink-l1: #fa7fb8 !default;
+$pink: #f84f9f !default;
+$pink-d1: #c13a7a !default;
+$pink-d2: #862654 !default;
+$pink-d3: #47102a !default;
+$pink-d4: #2a0816 !default;
+
+$red-l4: #fcedee !default;
+$red-l3: #f7d1d2 !default;
+$red-l2: #f0a2a5 !default;
+$red-l1: #e86e73 !default;
+$red: #e0363e !default;
+$red-d1: #ae282d !default;
+$red-d2: #79181d !default;
+$red-d3: #3f090a !default;
+$red-d4: #250606 !default;
+
+$orange-l4: #fef3eb !default;
+$orange-l3: #fde1cc !default;
+$orange-l2: #fbc398 !default;
+$orange-l1: #f9a35d !default;
+$orange: #f7821b !default;
+$orange-d1: #c06312 !default;
+$orange-d2: #86440a !default;
+$orange-d3: #472005 !default;
+$orange-d4: #2a1002 !default;
+
+$yellow-l4: #fff8ec !default;
+$yellow-l3: #feeece !default;
+$yellow-l2: #fedc9b !default;
+$yellow-l1: #fdca64 !default;
+$yellow: #fcb825 !default;
+$yellow-d1: #c48e1a !default;
+$yellow-d2: #89620f !default;
+$yellow-d3: #483206 !default;
+$yellow-d4: #2b1c04 !default;
+
+$green-l4: #f1f8ee !default;
+$green-l3: #daeed4 !default;
+$green-l2: #b5dda8 !default;
+$green-l1: #8dcb78 !default;
+$green: #64ba45 !default;
+$green-d1: #4b8f33 !default;
+$green-d2: #326321 !default;
+$green-d3: #16320c !default;
+$green-d4: #0a1c07 !default;
+
+$gray-l4: #f5f5f5 !default;
+$gray-l3: #e6e6e6 !default;
+$gray-l2: #cdcdcd !default;
+$gray-l1: #b2b2b2 !default;
+$gray: #989898 !default;
+$gray-d1: #747474 !default;
+$gray-d2: #505050 !default;
+$gray-d3: #272727 !default;
+$gray-d4: #151515 !default;
 
 // brand color
-$primary: $orange !default;
+$primary: $blue !default;
 $secondary: $gray-400 !default;
 
 // functional color
 $success: $green !default;
-$info: $cyan !default;
 $warning: $yellow !default;
 $danger: $red !default;
-$light: $gray-100 !default;
-$dark: $gray-800 !default;
+
+$base-colors-l4: (
+        "blue": $blue-l4,
+        "purple": $purple-l4,
+        "pink": $pink-l4,
+        "red": $red-l4,
+        "orange": $orange-l4,
+        "yellow": $yellow-l4,
+        "green": $green-l4,
+        "gray": $gray-l4
+);
+
+$base-colors-l3: (
+        "blue": $blue-l3,
+        "purple": $purple-l3,
+        "pink": $pink-l3,
+        "red": $red-l3,
+        "orange": $orange-l3,
+        "yellow": $yellow-l3,
+        "green": $green-l3,
+        "gray": $gray-l3
+);
+
+$base-colors-l2: (
+        "blue": $blue-l2,
+        "purple": $purple-l2,
+        "pink": $pink-l2,
+        "red": $red-l2,
+        "orange": $orange-l2,
+        "yellow": $yellow-l2,
+        "green": $green-l2,
+        "gray": $gray-l2
+);
+
+$base-colors-l1: (
+        "blue": $blue-l1,
+        "purple": $purple-l1,
+        "pink": $pink-l1,
+        "red": $red-l1,
+        "orange": $orange-l1,
+        "yellow": $yellow-l1,
+        "green": $green-l1,
+        "gray": $gray-l1
+);
 
 $base-colors: (
+        "blue": $blue,
+        "purple": $purple,
+        "pink": $pink,
         "red": $red,
         "orange": $orange,
         "yellow": $yellow,
         "green": $green,
-        "teal": $teal,
-        "cyan": $cyan,
-        "blue": $blue,
-        "indigo": $indigo,
-        "purple": $purple,
-        "pink": $pink
+        "gray": $gray
+);
+
+$base-colors-d1: (
+        "blue": $blue-d1,
+        "purple": $purple-d1,
+        "pink": $pink-d1,
+        "red": $red-d1,
+        "orange": $orange-d1,
+        "yellow": $yellow-d1,
+        "green": $green-d1,
+        "gray": $gray-d1
+);
+
+$base-colors-d2: (
+        "blue": $blue-d2,
+        "purple": $purple-d2,
+        "pink": $pink-d2,
+        "red": $red-d2,
+        "orange": $orange-d2,
+        "yellow": $yellow-d2,
+        "green": $green-d2,
+        "gray": $gray-d2
+);
+
+$base-colors-d3: (
+        "blue": $blue-d3,
+        "purple": $purple-d3,
+        "pink": $pink-d3,
+        "red": $red-d3,
+        "orange": $orange-d3,
+        "yellow": $yellow-d3,
+        "green": $green-d3,
+        "gray": $gray-d3
+);
+
+$base-colors-d4: (
+        "blue": $blue-d4,
+        "purple": $purple-d4,
+        "pink": $pink-d4,
+        "red": $red-d4,
+        "orange": $orange-d4,
+        "yellow": $yellow-d4,
+        "green": $green-d4,
+        "gray": $gray-d4
 );
 
 $neutral-colors: (
-        "gray-0": $gray-0,
-        "gray-1": $gray-1,
-        "gray-2": $gray-2,
-        "gray-3": $gray-3,
-        "gray-4": $gray-4,
-        "gray-5": $gray-5,
-        "gray-6": $gray-6,
-        "gray-7": $gray-7,
-        "gray-8": $gray-8,
-        "gray-9": $gray-9,
-        "gray-10": $gray-10,
-        "gray-11": $gray-11,
-        "gray-12": $gray-12,
-        "gray-13": $gray-13,
-        "gray-14": $gray-14,
-        "gray-15": $gray-15
-);
-
-$base-and-neutral-colors: (
-        "red": $red,
-        "orange": $orange,
-        "yellow": $yellow,
-        "green": $green,
-        "teal": $teal,
-        "cyan": $cyan,
-        "blue": $blue,
-        "indigo": $indigo,
-        "purple": $purple,
-        "pink": $pink,
         "gray-0": $gray-0,
         "gray-1": $gray-1,
         "gray-2": $gray-2,
@@ -122,11 +246,8 @@ $theme-colors: (
   "primary":    $primary,
   "secondary":  $secondary,
   "success":    $success,
-  "info":       $info,
   "warning":    $warning,
-  "danger":     $danger,
-  "light":      $light,
-  "dark":       $dark
+  "danger":     $danger
 );
 
 $font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
@@ -375,7 +496,7 @@ $progress-bar-transition:           width .6s ease !default;
 
 // Card
 $card-padding: 1.5rem !default;
-$card-border: $border-width solid $gray-200 !default;
+$card-border: $border-width solid $gray-13 !default;
 $card-box-shadow: $box-shadow !default;
 
 $card-rectangular-border-radius: 0 !default;

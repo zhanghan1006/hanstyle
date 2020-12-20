@@ -4,7 +4,7 @@ import {
   FontAwesomeIcon,
   FontAwesomeIconProps,
 } from "@fortawesome/react-fontawesome";
-import { BaseColor, NeutralColor } from "../variables";
+import { BaseColor } from "../variables";
 import { IconProp, library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
@@ -14,7 +14,7 @@ library.add(fas);
 library.add(far);
 library.add(fab);
 
-export type IconThemeColor = BaseColor | NeutralColor;
+export type IconThemeColor = BaseColor;
 
 export interface IconProps extends FontAwesomeIconProps {
   /**
@@ -49,7 +49,7 @@ export const Icon: FC<IconProps> = (props) => {
 };
 
 Icon.defaultProps = {
-  iconThemeColor: "gray-0",
+  iconThemeColor: "gray",
 };
 
 export default Icon;

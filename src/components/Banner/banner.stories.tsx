@@ -8,6 +8,7 @@ import Banner2 from "../../image/banner-2.jpg";
 import Banner3 from "../../image/banner-3.jpg";
 import Banner4 from "../../image/banner-4.jpg";
 import Banner5 from "../../image/banner-5.jpg";
+import Banner6 from "../../image/banner-6.jpg";
 
 export default {
   title: "Components/Banner",
@@ -63,28 +64,33 @@ Default.args = {
   children: [
     <Image
       src={Banner1}
-      stretchSize={[900, 400]}
-      clipSize={[0, 900, 400, 0]}
+      stretchSize={[960, 303]}
+      clipSize={[0, 960, 303, 0]}
     />,
     <Image
       src={Banner2}
-      stretchSize={[900, 400]}
-      clipSize={[0, 900, 400, 0]}
+      stretchSize={[960, 303]}
+      clipSize={[0, 960, 303, 0]}
     />,
     <Image
       src={Banner3}
-      stretchSize={[900, 400]}
-      clipSize={[0, 900, 400, 0]}
+      stretchSize={[960, 303]}
+      clipSize={[0, 960, 303, 0]}
     />,
     <Image
       src={Banner4}
-      stretchSize={[900, 400]}
-      clipSize={[0, 900, 400, 0]}
+      stretchSize={[960, 303]}
+      clipSize={[0, 960, 303, 0]}
     />,
     <Image
       src={Banner5}
-      stretchSize={[900, 400]}
-      clipSize={[0, 900, 400, 0]}
+      stretchSize={[960, 303]}
+      clipSize={[0, 960, 303, 0]}
+    />,
+    <Image
+      src={Banner6}
+      stretchSize={[960, 303]}
+      clipSize={[0, 960, 303, 0]}
     />,
   ],
 };

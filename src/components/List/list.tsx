@@ -8,15 +8,15 @@ import React, {
   useState,
 } from "react";
 import classNames from "classnames";
-import { BaseColor, BaseSize, NeutralColor } from "../variables";
+import { BaseColor, BaseSize } from "../variables";
 import Divider from "../Divider/divider";
 import { ListItemProps } from "./listItem";
 
 export type ListBorderRadiusSize = "none" | BaseSize;
-export type ListBorderColor = "none" | NeutralColor | BaseColor;
-export type ListDividerColor = "none" | NeutralColor | BaseColor;
+export type ListBorderColor = "none" | BaseColor;
+export type ListDividerColor = "none" | BaseColor;
 export type ListShadowSize = "none" | BaseSize;
-export type ListThemeColor = NeutralColor | BaseColor;
+export type ListThemeColor = BaseColor;
 export type ListInteractionLevel =
   | "none"
   | "hoverable"
@@ -150,10 +150,10 @@ export const List = forwardRef<HTMLUListElement, ListProps>((props, ref) => {
 
 List.defaultProps = {
   listBorderRadiusSize: "none",
-  listBorderColor: "gray-13",
-  listDividerColor: "gray-13",
+  listBorderColor: "gray",
+  listDividerColor: "gray",
   listShadowSize: "none",
-  listThemeColor: "gray-13",
+  listThemeColor: "blue",
   listInteractionLevel: "none",
   listInteractionStyle: "none",
 };

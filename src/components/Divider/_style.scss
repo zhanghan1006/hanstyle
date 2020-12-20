@@ -21,7 +21,7 @@
       padding: 0 1rem;
       margin: 0;
       flex-grow: 0;
-      color: $gray-900;
+      color: $black;
     }
     &.divider-left {
       hr:nth-of-type(1) {
@@ -50,7 +50,7 @@
   }
 
   // line color
-  @each $key, $val in $base-and-neutral-colors {
+  @each $key, $val in $base-colors-l3 {
     &.divider-line-#{$key} {
       background-color: $white;
       hr {

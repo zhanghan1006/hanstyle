@@ -1,6 +1,13 @@
 .dropdown {
   display: inline-block;
   position: relative;
+  &.disabled {
+    cursor: not-allowed !important;
+    * {
+      pointer-events: none !important;
+    }
+    box-shadow: none !important;
+  }
   .dropdown-button {
     position: relative;
     top: 0;

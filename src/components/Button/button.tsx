@@ -1,10 +1,10 @@
 import React, { FC, ButtonHTMLAttributes } from "react";
 import classNames from "classnames";
-import { BaseColor, BaseSize, NeutralColor } from "../variables";
+import { BaseColor, BaseSize } from "../variables";
 
 export type ButtonSize = BaseSize;
 export type ButtonShape = "rectangular" | "rounded" | "elliptic" | "circle";
-export type ButtonThemeColor = BaseColor | NeutralColor;
+export type ButtonThemeColor = BaseColor;
 export type ButtonType = "solid" | "hollow" | "inverse";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -78,7 +78,7 @@ Button.defaultProps = {
   buttonDisabled: false,
   buttonSize: "middle",
   buttonShape: "rounded",
-  buttonThemeColor: "orange",
+  buttonThemeColor: "blue",
   buttonType: "solid",
 };
 

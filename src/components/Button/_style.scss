@@ -15,11 +15,10 @@
   outline:none;
   &.disabled {
     cursor: not-allowed;
-    opacity: $btn-disabled-opacity;
-    box-shadow: none;
     * {
       pointer-events: none;
     }
+    box-shadow: none;
   }
 
   // size & shape
@@ -76,54 +75,121 @@
 
   // btnType & themeColor
   &.button-solid {
-    @each $key, $val in $base-and-neutral-colors {
+    @each $key, $val in $base-colors {
       &.button-#{$key} {
-        @include button-color($val, $val, $white);
+        background: $val;
+        border-color: $val;
+        color: $white;
+        &:focus {
+          background: $val;
+          border-color: $val;
+          color: $white;
+          outline: none;
+        }
+      }
+    }
+    @each $key, $val in $base-colors-l1 {
+      &.button-#{$key} {
+        &:hover {
+          background: $val;
+          border-color: $val;
+          color: $white;
+        }
+      }
+    }
+    @each $key, $val in $base-colors-d1 {
+      &.button-#{$key} {
+        &:active {
+          background: $val;
+          border-color: $val;
+          color: $white;
+        }
+      }
+    }
+    @each $key, $val in $base-colors-l3 {
+      &.button-#{$key} {
+        &.disabled {
+          background: $val;
+          border-color: $val;
+          color: $white;
+        }
       }
     }
   }
   &.button-hollow {
-    @each $key, $val in $base-and-neutral-colors {
+    background: $white;
+    border-color: $gray-13;
+    color: $gray-2;
+    &:focus {
+      background: $white;
+      border-color: $gray-13;
+      color: $gray-2;
+      outline: none;
+    }
+    @each $key, $val in $base-colors {
       &.button-#{$key} {
-        @include button-color(
-                        $white, $gray-400, $body-color,
-                        $white, $gray-400, $body-color,
-                        $white, $val, $val,
-                        $white, darken($val, 20%), darken($val, 20%));
+        &:hover {
+          background: $white;
+          border-color: $val;
+          color: $val;
+        }
+      }
+    }
+    @each $key, $val in $base-colors-d1 {
+      &.button-#{$key} {
+        &:active {
+          background: $white;
+          border-color: $val;
+          color: $val;
+        }
+      }
+    }
+    @each $key, $val in $base-colors {
+      &.button-#{$key} {
+        &.disabled {
+          background: $white;
+          border-color: $gray-13;
+          color: $gray-11;
+        }
       }
     }
   }
   &.button-inverse {
-    @each $key, $val in $base-and-neutral-colors {
+    @each $key, $val in $base-colors {
       &.button-#{$key} {
-        @include button-color(
-                        $white, $gray-400, $val,
-                        $white, $gray-400, $val,
-                        $val, $val, $white,
-                        darken($val, 20%), darken($val, 20%), $white);
+        background: $white;
+        border-color: $gray-13;
+        color: $val;
+        &:focus {
+          background: $white;
+          border-color: $gray-13;
+          color: $val;
+          outline: none;
+        }
+        &:hover {
+          background: $val;
+          border-color: $val;
+          color: $white;
+        }
+      }
+    }
+    @each $key, $val in $base-colors-d1 {
+      &.button-#{$key} {
+        &:active {
+          background: $val;
+          border-color: $val;
+          color: $white;
+        }
+      }
+    }
+    @each $key, $val in $base-colors-l2 {
+      &.button-#{$key} {
+        &.disabled {
+          background: $white;
+          border-color: $gray-13;
+          color: $val;
+        }
       }
     }
   }
 }
-
-//.btn-link {
-//  font-weight: $font-weight-normal;
-//  color: $btn-link-color;
-//  text-decoration: $link-decoration;
-//  box-shadow: none;
-//  &:hover {
-//    color: $btn-link-hover-color;
-//    text-decoration: $link-hover-decoration;
-//  }
-//  &:focus,
-//  &.focus {
-//    text-decoration: $link-hover-decoration;
-//    box-shadow: none;
-//  }
-//  &.disabled,
-//  &[disabled] {
-//    cursor: not-allowed;
-//    color: $btn-link-disabled-color;
-//    pointer-events: none;
-//  }
-//}

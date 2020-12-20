@@ -1,14 +1,12 @@
 export type BaseColor =
+  | "blue"
+  | "purple"
+  | "pink"
   | "red"
   | "orange"
   | "yellow"
   | "green"
-  | "teal"
-  | "cyan"
-  | "blue"
-  | "indigo"
-  | "purple"
-  | "pink";
+  | "gray";
 export type NeutralColor =
   | "gray-0"
   | "gray-1"

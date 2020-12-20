@@ -4,12 +4,10 @@ import React, {
   FC,
   FunctionComponentElement,
   HTMLAttributes,
-  useContext,
 } from "react";
 import classNames from "classnames";
 import Dropdown from "../Dropdown/dropdown";
 import MenuItem, { MenuItemProps } from "./menuItem";
-import { MenuContext } from "./menu";
 import DropdownButton from "../Dropdown/dropdownButton";
 import DropdownList from "../Dropdown/dropdownList";
 import ListItem from "../List/listItem";
@@ -50,10 +48,7 @@ export const Submenu: FC<SubmenuProps> = (props) => {
     submenuTrigger,
     ...restProps
   } = props;
-  const { menuStyle } = useContext(MenuContext);
-  const classes = classNames(className, "submenu", {
-    [`submenu-${menuStyle}`]: menuStyle,
-  });
+  const classes = classNames(className, "submenu", {});
   const renderChildren = () => {
     return Children.map(children, (child, index) => {
       const childElement = child as FunctionComponentElement<MenuItemProps>;

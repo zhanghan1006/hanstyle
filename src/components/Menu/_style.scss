@@ -1,118 +1,143 @@
 .menu {
   display: flex;
   flex-wrap: nowrap;
-}
-.menu-item {
-  cursor: pointer;
-  padding: $menu-item-padding-y $menu-item-padding-x;
-  transition: $menu-transition;
-}
+  text-decoration: none;
+  list-style-type: none;
 
-// disabled
-.menu-item-disabled {
-  cursor: not-allowed;
-}
+  .menu-item {
+    cursor: pointer;
+    padding: $menu-item-padding-y $menu-item-padding-x;
+    transition: $menu-transition;
+    &.disabled {
+      cursor: not-allowed !important;
+      background-color: $white !important;
+      border-color: $white !important;
+      color: $gray-11 !important;
+    }
+  }
 
-// style & themeColor
-.menu-item-plain {
-  text-decoration: none;
-  list-style-type: none;
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    list-style-type: none;
+  // style & themeColor
+  &.menu-plain {
+    .menu-item {
+      background-color: $white;
+      border-color: $white;
+      color: $black;
+    }
+    @each $key, $val in $base-colors {
+      &.menu-#{$key} {
+        .menu-item {
+          &:hover {
+            background-color: $white;
+            border-color: $white;
+            color: $val;
+          }
+        }
+      }
+    }
+    @each $key, $val in $base-colors-d1 {
+      &.menu-#{$key} {
+        .menu-item {
+          &:active {
+            background-color: $white;
+            border-color: $white;
+            color: $val;
+          }
+        }
+      }
+    }
+    @each $key, $val in $base-colors {
+      &.menu-#{$key} {
+        .menu-item {
+          &.selected {
+            background-color: $white;
+            border-color: $white;
+            color: $val;
+          }
+        }
+      }
+    }
   }
-  &.menu-item-orange {
-    @include menu-item-plain-color(
-                    $white, $white, $body-color,
-                    $white, $white, $orange,
-                    $white, $white, darken($orange, 20%),
-                    $white, $white, $orange,
-                    $white, $white, $gray-500);
+
+  &.menu-border-top {
+    .menu-item {
+      background-color: $white;
+      border-top: $menu-item-active-border-width solid $white;
+      color: $black;
+    }
+    @each $key, $val in $base-colors {
+      &.menu-#{$key} {
+        .menu-item {
+          &:hover {
+            background-color: $white;
+            border-top: $menu-item-active-border-width solid $white;
+            color: $val;
+          }
+        }
+      }
+    }
+    @each $key, $val in $base-colors-d1 {
+      &.menu-#{$key} {
+        .menu-item {
+          &:active {
+            background-color: $white;
+            border-top: $menu-item-active-border-width solid $white;
+            color: $val;
+          }
+        }
+      }
+    }
+    @each $key, $val in $base-colors {
+      &.menu-#{$key} {
+        .menu-item {
+          &.selected {
+            background-color: $white;
+            border-top: $menu-item-active-border-width solid $val;
+            color: $val;
+          }
+        }
+      }
+    }
   }
-  &.menu-item-blue {
-    @include menu-item-plain-color(
-                    $white, $white, $body-color,
-                    $white, $white, $blue,
-                    $white, $white, darken($blue, 20%),
-                    $white, $white, $blue,
-                    $white, $white, $gray-500);
-  }
-  &.menu-item-red {
-    @include menu-item-plain-color(
-                    $white, $white, $body-color,
-                    $white, $white, $red,
-                    $white, $white, darken($red, 20%),
-                    $white, $white, $red,
-                    $white, $white, $gray-500);
-  }
-}
-.menu-item-border-top {
-  text-decoration: none;
-  list-style-type: none;
-  border-top: $menu-item-active-border-width solid $white;
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    list-style-type: none;
-  }
-  &.menu-item-orange {
-    @include menu-item-border-top-color(
-                    $white, $white, $body-color,
-                    $white, $white, $orange,
-                    $white, $white, darken($orange, 20%),
-                    $white, $orange, $orange,
-                    $white, $white, $gray-500);
-  }
-  &.menu-item-blue {
-    @include menu-item-border-top-color(
-                    $white, $white, $body-color,
-                    $white, $white, $blue,
-                    $white, $white, darken($blue, 20%),
-                    $white, $blue, $blue,
-                    $white, $white, $gray-500);
-  }
-  &.menu-item-red {
-    @include menu-item-border-top-color(
-                    $white, $white, $body-color,
-                    $white, $white, $red,
-                    $white, $white, darken($red, 20%),
-                    $white, $red, $red,
-                    $white, $white, $gray-500);
-  }
-}
-.menu-item-border-bottom {
-  text-decoration: none;
-  list-style-type: none;
-  border-bottom: $menu-item-active-border-width solid $white;
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    list-style-type: none;
-  }
-  &.menu-item-orange {
-    @include menu-item-border-bottom-color(
-                    $white, $white, $body-color,
-                    $white, $white, $orange,
-                    $white, $white, darken($orange, 20%),
-                    $white, $orange, $orange,
-                    $white, $white, $gray-500);
-  }
-  &.menu-item-blue {
-    @include menu-item-border-bottom-color(
-                    $white, $white, $body-color,
-                    $white, $white, $blue,
-                    $white, $white, darken($blue, 20%),
-                    $white, $blue, $blue,
-                    $white, $white, $gray-500);
-  }
-  &.menu-item-red {
-    @include menu-item-border-bottom-color(
-                    $white, $white, $body-color,
-                    $white, $white, $red,
-                    $white, $white, darken($red, 20%),
-                    $white, $red, $red,
-                    $white, $white, $gray-500);
+
+  &.menu-border-bottom {
+    .menu-item {
+      background-color: $white;
+      border-bottom: $menu-item-active-border-width solid $white;
+      color: $black;
+    }
+    @each $key, $val in $base-colors {
+      &.menu-#{$key} {
+        .menu-item {
+          &:hover {
+            background-color: $white;
+            border-bottom: $menu-item-active-border-width solid $white;
+            color: $val;
+          }
+        }
+      }
+    }
+    @each $key, $val in $base-colors-d1 {
+      &.menu-#{$key} {
+        .menu-item {
+          &:active {
+            background-color: $white;
+            border-bottom: $menu-item-active-border-width solid $white;
+            color: $val;
+          }
+        }
+      }
+    }
+    @each $key, $val in $base-colors {
+      &.menu-#{$key} {
+        .menu-item {
+          &.selected {
+            background-color: $white;
+            border-bottom: $menu-item-active-border-width solid $val;
+            color: $val;
+          }
+        }
+      }
+    }
   }
 }
 

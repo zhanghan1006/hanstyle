@@ -11,11 +11,11 @@ import React, {
 import classNames from "classnames";
 import { DropdownButtonProps } from "./dropdownButton";
 import { DropdownListProps } from "./dropdownList";
-import { BaseColor, NeutralColor } from "../variables";
+import { BaseColor } from "../variables";
 
 type ChangeIsOpen = (changeToOpen: boolean) => void;
 type DropdownTrigger = "hover" | "click";
-type DropdownThemeColor = BaseColor | NeutralColor;
+type DropdownThemeColor = BaseColor;
 type DropdownButtonSize = { width: number; height: number };
 
 export interface DropdownProps extends HTMLAttributes<HTMLDivElement> {
@@ -48,7 +48,7 @@ export const DropdownContext = createContext<IDropdownContext>({
   dropdownDisabled: false,
   dropdownTrigger: "hover",
   dropdownButtonSize: { width: 0, height: 0 },
-  dropdownThemeColor: "gray-13",
+  dropdownThemeColor: "gray",
 });
 
 /**
@@ -73,7 +73,9 @@ export const Dropdown: FC<DropdownProps> = (props) => {
     dropdownThemeColor,
     ...restProps
   } = props;
-  const classes = classNames(className, "dropdown", {});
+  const classes = classNames(className, "dropdown", {
+    disabled: dropdownDisabled,
+  });
   const [isOpen, setIsOpen] = useState(false);
   const dropdownDivRef = useRef(null);
   let dropdownButtonSize = useRef({
@@ -171,7 +173,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
 Dropdown.defaultProps = {
   dropdownDisabled: false,
   dropdownTrigger: "hover",
-  dropdownThemeColor: "orange",
+  dropdownThemeColor: "gray",
 };
 
 export default Dropdown;
